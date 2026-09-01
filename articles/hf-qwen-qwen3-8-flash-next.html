@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview</title>
+<meta name="description" content="Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want t">
+<meta property="og:title" content="Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview">
+<meta property="og:description" content="Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want t">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<span class="eyebrow">Explainer</span>
+<h1>Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview</h1>
+<div class="meta">01 September 2026 · 3 sources</div>
+<p class="lead">Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want to know what the config file commits them to before they do.</p>
+<h2 class="section">What this model is</h2>
+<p class="item">The repository holds post-trained weights and configuration for a multimodal model: the pipeline task is image-text-to-text, and the config sets language_model_only to false with an image_token_id of 248056, so the checkpoint carries both a vision path and a text path in one artifact. The architecture class is Qwen4ExpForConditionalGeneration and the model_type string is qwen4_exp — the conditional-generation naming is the usual Transformers convention for a model that conditions text output on non-text input.</p>
+<p class="item">The model card frames this as an experimental preview of the architecture behind Qwen4 rather than a routine point release. Three changes are called out: Qwen Sparse Attention (QSA), which the card says operates at the micro-block level rather than selecting individual tokens, paired with Gated DeltaNet; Gated Residual, described as an element-wise data-dependent read gate plus a per-branch scalar write gate over widened residual streams; and N-gram Embedding, presented as a parameter-scaling axis that costs less compute.</p>
+<p class="item">The config backs those claims up in a way the prose does not. layer_types is an explicit per-layer list alternating linear_attention and full_attention, with full_attention_interval set to 4 — attention type is a property of each layer position, not a global setting. A separate block of indexer_* keys (indexer_budget 2048, indexer_n_heads 4, indexer_kv_heads 1, indexer_head_dim 128, indexer_compress_ratio 4) describes the sparse-attention selection machinery, and heads_per_ngram is 8 with hc_count 4 and hc_lowrank 320. hidden_size is 2560 and head_dim is 256.</p>
+<h2 class="section">Why it is trending now</h2>
+<p class="item">The repository has 4698 likes and 207941 downloads in the last 30 days, and was last modified on 2026-08-27T05:03:36.000Z. That download-to-like ratio is what you would expect from a model people are actually pulling and running, not only bookmarking.</p>
+<p class="item">The more likely driver is positioning. The card presents this as the first open-weight release under the architecture that will underpin Qwen4, which makes it the earliest place to run that architecture locally rather than through an API. Anyone building on Qwen and planning for the next generation has a reason to profile this now.</p>
+<h2 class="section">What the artifact actually contains (weights, config, licence)</h2>
+<p class="item">There are 144 files in the repository, of which 131 are weight shards. The remaining files are the usual config, tokenizer, and card material. A shard count that high tells you two practical things: a naive download pulls a large number of separate files, and any tooling you point at this needs to handle sharded safetensors properly rather than expecting a single weight file.</p>
+<p class="item">The declared dtype in text_config is bfloat16, so the shards are the bf16 post-trained weights, not a quantised variant. attention_bias is false and attention_dropout is 0.0. The bos_token_id and eos_token_id are both 248044, and the image_token_id of 248056 sits just above them — image placeholders live in the same vocabulary space as the special text tokens, which matters if you are hand-assembling token sequences instead of going through the processor.</p>
+<p class="item">The card&#x27;s YAML front matter declares library_name transformers, license other, license_name qwen-community-1.0, and license_link LICENSE. The Hub tags are transformers, safetensors, qwen4_exp, image-text-to-text, conversational, license:other, eval-results, endpoints_compatible, region:us.</p>
+<h2 class="section">How you would run or fine-tune it</h2>
+<p class="item">The card states the artifacts are compatible with Hugging Face Transformers, vLLM, SGLang, and TokenSpeed, and the endpoints_compatible tag means the repo is shaped for Hub inference endpoints. The conversational tag indicates a chat template is expected to be present, so the normal path is the processor plus chat-template flow for an image-text-to-text model rather than raw string prompting.</p>
+<p class="item">The first thing that will break is version skew. model_type is qwen4_exp and the architecture class is Qwen4ExpForConditionalGeneration; a Transformers install that predates registration of that model type will fail to resolve the config, and the same applies to vLLM and SGLang builds. Check the model type is supported by your installed version before troubleshooting anything else.</p>
+<p class="item">For fine-tuning, the structural facts to plan around are the 131 bf16 shards and the mixed layer_types list. Loading and resharding that many files is its own operational step, and any code that assumes a uniform attention implementation across layers — memory estimation, custom attention patching, layer-wise freezing schedules — needs to read layer_types rather than assume homogeneity. The indexer_* parameters are part of the sparse-attention path and are not knobs to tune casually during downstream training.</p>
+<h2 class="section">Limits and licence conditions to check before shipping it</h2>
+<p class="item">The licence is not a standard open-source one. It is declared as other with license_name qwen-community-1.0 and a license_link pointing at a LICENSE file in the repository. You have to read that file. A community licence typically carries use restrictions, attribution requirements, or usage thresholds, and none of that is visible from the Hub tag alone.</p>
+<p class="item">Second, do not carry the hosted product&#x27;s properties over to these weights. The card says Qwen3.8-Flash on Qwen Cloud is the official version based on Qwen3.8-Flash-Next, with more production features such as 1M context length by default and official built-in tools. Those are attributes of the managed service as described; the open-weight repository is the base for it, not the same configuration.</p>
+<p class="item">Third, take the card&#x27;s own word for the maturity level: it calls this an experimental preview of the architecture that will underpin Qwen4. Combined with a novel model_type, that means your runtime support is tracking a moving target, and kernel or implementation changes upstream are more likely here than with a settled architecture. Pin your versions.</p>
+<div class="facts"><h2>Measured</h2><table><tr><th>likes</th><td>4698</td></tr><tr><th>downloads in the last 30 days</th><td>207941</td></tr><tr><th>task</th><td>image-text-to-text</td></tr><tr><th>library</th><td>transformers</td></tr><tr><th>licence</th><td>other</td></tr><tr><th>last modified</th><td>2026-08-27T05:03:36.000Z</td></tr><tr><th>files in the repository</th><td>144</td></tr><tr><th>weight shards</th><td>131</td></tr><tr><th>architecture class</th><td>Qwen4ExpForConditionalGeneration</td></tr><tr><th>model type</th><td>qwen4_exp</td></tr><tr><th>declared tags</th><td>transformers, safetensors, qwen4_exp, image-text-to-text, conversational, license:other, eval-results, endpoints_compatible, region:us</td></tr></table><p class="endpoint">Read from <a href="https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next">https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next</a> on 01 September 2026.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/config.json">config.json</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next#model-card">Model card</a></li></ol></div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>

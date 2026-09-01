@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sourced Daily</title>
+<meta name="description" content="Four desks. Every claim linked to where it came from.">
+<meta property="og:title" content="Sourced Daily">
+<meta property="og:description" content="Four desks. Every claim linked to where it came from.">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<ul class="index"><li><a href="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><span class="eyebrow">Explainer</span><h2>Praxist: an autonomous research system that ships mostly as worked examples</h2><p>Praxist from sapientinc is a Python system for coordinating parallel agent-driven research on projects whose objective is already measurable. Its repository layout is unusual enough to matte</p></a></li><li><a href="https://claire-mun.github.io/articles/hf-qwen-qwen3-8-flash-next.html"><span class="eyebrow">Explainer</span><h2>Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview</h2><p>Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will u</p></a></li><li><a href="https://claire-mun.github.io/articles/gh-deepseek-ai-deepseek-harness.html"><span class="eyebrow">Explainer</span><h2>DeepSeek Harness: an agent runtime where the plugin graph is the product</h2><p>DeepSeek Harness (`dsh`) is an MIT-licensed, TypeScript agent harness from DeepSeek AI, built on the Cordis plugin framework and shipped as a large monorepo. If you are evaluating agent runt</p></a></li><li><a href="https://claire-mun.github.io/articles/hf-zai-org-glm-5-3.html"><span class="eyebrow">Explainer</span><h2>GLM-5.3: what a 141-shard GlmMoeDsa checkpoint actually ships</h2><p>GLM-5.3 is Z.ai&#x27;s open-weights text-generation model, a mixture-of-experts architecture with a learned sparse-attention indexer, distributed as 141 safetensors shards under a custom licence.</p></a></li><li><a href="https://claire-mun.github.io/articles/gh-anywhere-labs-dsh-desktop.html"><span class="eyebrow">Explainer</span><h2>DSH Desktop: an Electron-era plugin host where the desktop shell is itself a plugin</h2><p>anywhere-labs/dsh-desktop is a community-built Windows and macOS client that wraps DeepSeek Harness&#x27;s local web UI, host service, and plugin system in a native app. It matters if you are eva</p></a></li><li><a href="https://claire-mun.github.io/articles/hf-zai-org-glm-5-3-flash.html"><span class="eyebrow">Explainer</span><h2>GLM-5.3-Flash: reading a hybrid linear/sparse-attention multimodal release from its config</h2><p>GLM-5.3-Flash is zai-org&#x27;s first natively multimodal model in the GLM-5 series, published on Hugging Face under MIT with an image-text-to-text pipeline tag and a new architecture class, Glm5</p></a></li></ul><div class="note">Nothing here is republished. Each piece cites the outlets it draws on and links to them, and photographs come only from collections that state their own licence.</div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>

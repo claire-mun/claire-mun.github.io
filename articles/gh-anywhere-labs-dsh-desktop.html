@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DSH Desktop: an Electron-era plugin host where the desktop shell is itself a plugin</title>
+<meta name="description" content="anywhere-labs/dsh-desktop is a community-built Windows and macOS client that wraps DeepSeek Harness&#x27;s local web UI, host service, and plugin system in a native app. It matters if you are evaluating plugin-host architectures, or considering shipping a plugin into someone else&#x27;s desktop runtime.">
+<meta property="og:title" content="DSH Desktop: an Electron-era plugin host where the desktop shell is itself a plugin">
+<meta property="og:description" content="anywhere-labs/dsh-desktop is a community-built Windows and macOS client that wraps DeepSeek Harness&#x27;s local web UI, host service, and plugin system in a native app. It matters if you are evaluating plugin-host architectures, or considering shipping a plugin into someone else&#x27;s desktop runtime.">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<span class="eyebrow">Explainer</span>
+<h1>DSH Desktop: an Electron-era plugin host where the desktop shell is itself a plugin</h1>
+<div class="meta">31 August 2026 · 4 sources</div>
+<p class="lead">anywhere-labs/dsh-desktop is a community-built Windows and macOS client that wraps DeepSeek Harness&#x27;s local web UI, host service, and plugin system in a native app. It matters if you are evaluating plugin-host architectures, or considering shipping a plugin into someone else&#x27;s desktop runtime.</p>
+<h2 class="section">What it is</h2>
+<p class="item">DSH Desktop packages DeepSeek Harness — its local web UI, host service, and plugin system — into a desktop application for Windows and macOS. The repository is TypeScript, MIT-licensed, and was last pushed on 2026-08-30. The distributed artifacts are an NSIS installer for Windows x64 and a Universal DMG for macOS; the README&#x27;s stated goal is that no additional runtime setup is needed.</p>
+<p class="item">The README is explicit that the project pins a specific upstream version and runs it as-is. What DSH Desktop adds on top is the native shell: windows, tray, terminal, update handling, and workspace configuration. Everything beyond that is expected to arrive through the plugin mechanism that DeepSeek Harness already provides. The project&#x27;s own slogan states the design constraint directly: everything is a plugin, and the desktop is a plugin too.</p>
+<p class="item">The README carries a prominent disclaimer. This is an independent community project with no affiliation, partnership, authorization, or endorsement from DeepSeek, and it states that no DeepSeek employees or upstream DeepSeek Harness team members participate in the repository. Upstream names visible in GitHub&#x27;s contributor list are inherited from fork history and synced commits.</p>
+<h2 class="section">Why it is getting attention now</h2>
+<p class="item">22,374 stars on a project whose entire premise is repackaging someone else&#x27;s runtime says something about where the demand is: people want a local model harness they can install rather than assemble. The download path in the README is a hosted site, not a build-from-source walkthrough, and the primary README is Chinese with an English translation as the secondary document — this is first a Chinese-language desktop client, second an English-language open source project.</p>
+<p class="item">There are 299 open issues. For a project of this size that is neither alarming nor reassuring on its own, but it does indicate the repository is being used as a real support channel rather than a code drop. The README also links a &quot;plugin ecosystem manifesto,&quot; which frames the project&#x27;s ambition as growing third-party plugins rather than growing the desktop app itself.</p>
+<h2 class="section">How it is put together (use the file counts and the sample unit)</h2>
+<p class="item">There are 866 tracked files, and four directories account for most of them: dsh-plugin-desktop/ at 312, vendor/ at 242, dsh-community-market/ at 107, and .agents/ at 69. The shape of that distribution is the story. The desktop shell is not the application with plugins bolted on — it lives in dsh-plugin-desktop/, a directory named like any other plugin, and it is the largest single unit of source. The slogan is a literal description of the directory layout.</p>
+<p class="item">The file-type counts sharpen this. There are 297 .ts files and 241 .tgz files. Given vendor/ holds 242 files, vendor/ is almost entirely packed npm tarballs committed into the repo. That is a deliberate choice consistent with the README&#x27;s claim of pinning and running a specific upstream version verbatim: rather than resolving upstream packages from a registry at build time, the exact bytes are checked in. 110 .md and 45 .yaml files round out the tree — a documentation-heavy project with meaningful configuration surface. The 69 files under .agents/ indicate AI coding-agent instructions are themselves a tracked, versioned part of the codebase.</p>
+<p class="item">The sample unit is dsh-community-market/src/client/index.ts, and it shows the plugin contract clearly. A plugin exports `inject` (here, `[&#x27;slots&#x27;, &#x27;locale&#x27;]`) declaring the host services it requires, plus an `apply(ctx)` function that receives a cordis Context. Inside `apply`, the plugin registers a locale dictionary under a namespace constant, installs its styles, and injects components into named extension points — `settings.plugins.tab` and `sidebar.footer.action` — each with an id and an explicit `order`. Registrations are wrapped in `ctx.effect(...)` with a human-readable label, so setup has a matching teardown and the plugin can be unloaded. Notably, the file&#x27;s imports of sibling packages like `@deepseek-ai/dsh-client-ui-conversation/client` are bare `import type {}` statements: they pull in ambient type augmentation only, not runtime code. The plugin also uses `declare module` to extend the host&#x27;s `LocaleNamespaceMap` with its own key. Coupling between plugins is expressed in the type system rather than in imports.</p>
+<h2 class="section">How you would actually use it</h2>
+<p class="item">As a user, you download the Windows installer or the macOS DMG from the project&#x27;s site and run it; the README points at a user guide and an FAQ for plugin commands and troubleshooting.</p>
+<p class="item">As a developer, the interesting entry point is writing a plugin, and dsh-community-market/src/client/index.ts is a usable template. You declare your service dependencies in `inject`, register UI into named slots with an explicit ordering value, register locale dictionaries under a namespace (the sample ships zh and en), and wrap every side effect in `ctx.effect` so it can be reversed. If your plugin needs types from other plugins&#x27; contributions, you import them as types only.</p>
+<p class="item">The slot names in the sample are worth reading as a map of where third-party code is allowed to appear: a tab in the plugin settings pane and an action in the sidebar footer. Extension points are enumerated and named by the host, not discovered dynamically, so what you can build is bounded by which slots exist.</p>
+<h2 class="section">What it does not do, or where you would be careful</h2>
+<p class="item">The vendored tarballs are the main thing to think hard about. 241 committed .tgz files give you reproducibility and an exact upstream pin, but they are opaque in diffs, they cannot be audited by reading the repository, and updating them is a manual act rather than a lockfile bump. If you plan to build from source or ship this internally, budget time for verifying what is inside vendor/ and for tracking the licenses of what is vendored — the MIT license on this repository covers this repository&#x27;s own code.</p>
+<p class="item">Be precise about provenance when explaining this to others. The README states the project is unaffiliated with DeepSeek and that upstream-looking contributors are a fork-history artifact. Anyone reading the GitHub contributor list as evidence of upstream involvement will draw the wrong conclusion, and the maintainers say so themselves.</p>
+<p class="item">The installer table covers Windows x64 and macOS Universal only. Documentation is Chinese-first with an English README as a secondary path, so expect the deepest material — the user guide, the FAQ, the ecosystem manifesto — to be most complete in Chinese. Finally, the README&#x27;s own release and download badges point at anywhere-labs/deepseek-harness-desktop while the repository is anywhere-labs/dsh-desktop; if you script against either name, confirm which one is canonical before depending on it.</p>
+<div class="facts"><h2>Measured</h2><table><tr><th>stars</th><td>22374</td></tr><tr><th>primary language</th><td>TypeScript</td></tr><tr><th>license</th><td>MIT</td></tr><tr><th>last pushed</th><td>2026-08-30T14:54:54Z</td></tr><tr><th>open issues</th><td>299</td></tr><tr><th>tracked files</th><td>866</td></tr><tr><th>files under dsh-plugin-desktop/</th><td>312</td></tr><tr><th>files under vendor/</th><td>242</td></tr><tr><th>files under dsh-community-market/</th><td>107</td></tr><tr><th>files under .agents/</th><td>69</td></tr><tr><th>most common file types</th><td>.ts (297), .tgz (241), .md (110), .yaml (45)</td></tr></table><p class="endpoint">Read from <a href="https://api.github.com/repos/anywhere-labs/dsh-desktop">https://api.github.com/repos/anywhere-labs/dsh-desktop</a>, <a href="https://api.github.com/repos/anywhere-labs/dsh-desktop/git/trees/master">https://api.github.com/repos/anywhere-labs/dsh-desktop/git/trees/master</a> on 31 August 2026.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://github.com/anywhere-labs/dsh-desktop">anywhere-labs/dsh-desktop</a></li><li><a href="https://github.com/anywhere-labs/dsh-desktop">Repository description</a></li><li><a href="https://github.com/anywhere-labs/dsh-desktop#readme">README</a></li><li><a href="https://github.com/anywhere-labs/dsh-desktop/blob/HEAD/dsh-community-market/src/client/index.ts">dsh-community-market/src/client/index.ts (one of 6 files named index.ts)</a></li></ol></div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>

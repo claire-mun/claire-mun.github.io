@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GLM-5.3: what a 141-shard GlmMoeDsa checkpoint actually ships</title>
+<meta name="description" content="GLM-5.3 is Z.ai&#x27;s open-weights text-generation model, a mixture-of-experts architecture with a learned sparse-attention indexer, distributed as 141 safetensors shards under a custom licence. This is for engineers deciding whether to pull it, host it, or fine-tune it, and who want to know how the rep">
+<meta property="og:title" content="GLM-5.3: what a 141-shard GlmMoeDsa checkpoint actually ships">
+<meta property="og:description" content="GLM-5.3 is Z.ai&#x27;s open-weights text-generation model, a mixture-of-experts architecture with a learned sparse-attention indexer, distributed as 141 safetensors shards under a custom licence. This is for engineers deciding whether to pull it, host it, or fine-tune it, and who want to know how the rep">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<span class="eyebrow">Explainer</span>
+<h1>GLM-5.3: what a 141-shard GlmMoeDsa checkpoint actually ships</h1>
+<div class="meta">31 August 2026 · 3 sources</div>
+<p class="lead">GLM-5.3 is Z.ai&#x27;s open-weights text-generation model, a mixture-of-experts architecture with a learned sparse-attention indexer, distributed as 141 safetensors shards under a custom licence. This is for engineers deciding whether to pull it, host it, or fine-tune it, and who want to know how the repository is organised before committing the bandwidth.</p>
+<h2 class="section">What this model is</h2>
+<p class="item">GLM-5.3 is a conversational text-generation model published by zai-org on the Hugging Face Hub. Its architecture class is GlmMoeDsaForCausalLM and its model type is glm_moe_dsa, which places it in the GLM mixture-of-experts family rather than the dense GLM line. It declares English and Chinese, targets the transformers library, and carries an arxiv:2602.15763 tag pointing at an associated paper.</p>
+<p class="item">The model card is explicit that this is not a new pretrain: GLM-5.3 uses the same base model as GLM-5.2, and every gain comes from post-training. That framing matters for how you evaluate it. If you already have infrastructure sized for GLM-5.2, the shape of the model is the same lineage; what changed is behaviour on coding and long-horizon agentic tasks, which is a post-training property and therefore more sensitive to prompt format, tool-calling conventions, and sampling settings than a base-model change would be.</p>
+<p class="item">The card claims a 50 percent improvement over GLM-5.2 on an in-house Z.ai Code Bench, plus open-source state of the art on Terminal Bench 3.0 and Agents&#x27; Last Exam. The published table is more informative than the headline. Terminal Bench 3.0 moves from 4.6 to 28.3 against GLM-5.2, SWE-Marathon (v1.1) from 19.4 to 42.5, DeepSWE (v1.1) from 46.2 to 66.9. On several of those same rows the closed models still lead: GPT-5.6 Sol takes Terminal Bench 3.0 at 34.6 and DeepSWE at 72.7, Opus 4.8 takes NL2Repo at 69.7 and SWE-Marathon at 48.8, Fable 5 takes FrontierSWE at 88.2. The one row where GLM-5.3 is the bolded leader in the excerpt is CyberGym at 84.5.</p>
+<h2 class="section">Why it is trending now</h2>
+<p class="item">The numbers are modest in absolute terms and interesting in shape: 1383 likes and 66,195 downloads in the last thirty days, with the repository last modified on 2026-08-31. For a model of this size, downloads are a weak proxy for users, since a single serving deployment pulls the whole shard set and one CI job can do it repeatedly.</p>
+<p class="item">The attention driver is the coding and agentic jump described above, arriving from post-training on an existing base. The card also flags what it calls emergent cyber capability, saying capability in that area developed faster than expected as post-training scaled, that the model is state of the art on CyberGym for vulnerability discovery, and that gains are largest further up the exploitation chain, where it more than doubles GLM-5.2 on exploitation benchmarks. Whatever you make of the claim, a vendor volunteering that its open-weights release is strongest at exploitation is a fact worth carrying into your own risk review rather than skipping past.</p>
+<h2 class="section">What the artifact actually contains (weights, config, licence)</h2>
+<p class="item">The repository holds 154 files, of which 141 are weight shards. That leaves roughly a dozen files for everything else: config, tokenizer, generation settings, and the card. In practice the whole repository is the weights, and any tooling you write against it should assume a sharded safetensors load with an index, not a single file.</p>
+<p class="item">The config excerpt tells you most of what shapes your serving decision. Weights are bfloat16. Hidden size is 6144 with an intermediate size of 12288, head_dim is 192, the activation is silu, and attention_bias and attention_dropout are off. Attention uses a compressed KV path with kv_lora_rank of 512. max_position_embeddings is 1048576, so the positional configuration is built for very long context, which is a separate question from whether your serving stack can afford the KV memory to use it.</p>
+<p class="item">The distinctive part is the DSA indexer, which is where the name glm_moe_dsa comes from. There is a separate indexer with index_n_heads of 32 and index_head_dim of 128, selecting index_topk of 2048, with index_topk_freq of 4 and index_skip_topk_offset of 3. indexer_rope_interleave is true and index_share_for_mtp_iteration is true, the latter suggesting a multi-token-prediction path that reuses the same index. The indexer_types list alternates: the first three entries are full, then the pattern settles into one full followed by three shared, repeating. So most layers reuse a shared index and only every fourth recomputes it, which is consistent with index_topk_freq of 4. That is the mechanism by which long-context attention is made affordable, and it is also the part most likely to be unsupported or subtly wrong in a runtime that has not explicitly implemented it.</p>
+<p class="item">The MoE structure is visible in outline. first_k_dense_replace is 3 and mlp_layer_types begins with three dense entries before switching to sparse, so the early layers are dense and the rest are expert layers. ep_size is 1, meaning the config as published does not assume pre-sharded expert parallelism; your serving stack sets that. The excerpt is truncated before expert count, top-k routing, and layer count, so those are not stated here. Read the full config before sizing hardware.</p>
+<p class="item">The licence is declared as other, with license_name glm-5.3. It is a custom licence, not one of the standard SPDX identifiers, and its terms are not reproduced in the material available here. There are three eos_token_id values rather than one, which is typical of chat and tool-calling formats and is a common source of runaway generations if your client only honours a single stop token.</p>
+<h2 class="section">How you would run or fine-tune it</h2>
+<p class="item">The library tag is transformers and the pipeline tag is text-generation, so the standard AutoModelForCausalLM path is the declared entry point. The practical question is whether the transformers version you have registers glm_moe_dsa and GlmMoeDsaForCausalLM. A custom model type means an older install will fail to resolve the architecture, and a version that resolves the class but has an incomplete DSA implementation is the worse failure, because it produces output rather than an error. Pin and verify the version before drawing conclusions about model quality.</p>
+<p class="item">For serving, treat the sparse indexer as the compatibility question. Throughput on a model like this depends on the runtime having real kernels for both expert routing and the top-k index path; a generic fallback will run and will be slow. ep_size of 1 in the config means expert placement is yours to configure, so plan the expert-parallel and tensor-parallel layout deliberately rather than accepting defaults. The bfloat16 dtype and 141-shard layout mean the download and the load are both substantial, and a shared, warmed model cache is worth setting up before you have several nodes pulling independently.</p>
+<p class="item">Fine-tuning follows from the same facts. Full-parameter tuning of a bf16 MoE of this shape is an infrastructure project, not a script. Adapter-based tuning is the realistic route for most teams, and on an MoE you should decide explicitly whether adapters attach to attention only or also to expert MLPs, since routing behaviour is part of what post-training shaped here. Given the card&#x27;s own statement that the gains over GLM-5.2 come entirely from post-training, aggressive fine-tuning is exactly the operation most likely to erode the thing you selected the model for. Establish your evaluation before you tune, not after.</p>
+<h2 class="section">Limits and licence conditions to check before shipping it</h2>
+<p class="item">The licence is the first blocker. It is declared as other with the name glm-5.3, so no assumption from an Apache or MIT release carries over. Read the actual licence text in the repository and confirm commercial use, redistribution, derivative and fine-tuned weight terms, attribution, and any use restrictions, before it reaches a production plan. If your organisation has a licence review process, this is a case for it rather than a self-serve decision.</p>
+<p class="item">Second, take the cyber capability claim at face value operationally. The card states the model is state of the art on CyberGym at 84.5 and that its largest gains are on exploitation benchmarks. If you expose this model to untrusted input, or give it tool access in an environment with real credentials or network reach, the threat model is not the same as for a general chat model. Sandboxing and tool-permission design should be settled before deployment, not retrofitted.</p>
+<p class="item">Third, mind the gap between benchmark leadership and your workload. On most rows in the published table GLM-5.3 trails at least one closed model, and the benchmarks that improved most are agentic coding evaluations whose scores are sensitive to scaffold, prompt format, and tool interface. Reproducing a table number requires reproducing the harness. Run your own task set.</p>
+<p class="item">Finally, the mechanical details that break deployments: honour all three eos_token_id values, confirm your runtime genuinely supports the DSA indexer and MoE routing rather than silently degrading, and do not assume the 1048576 position limit is a usable context length on your hardware. It is a configuration ceiling, and the memory to reach it is a separate budget.</p>
+<div class="facts"><h2>Measured</h2><table><tr><th>likes</th><td>1383</td></tr><tr><th>downloads in the last 30 days</th><td>66195</td></tr><tr><th>task</th><td>text-generation</td></tr><tr><th>library</th><td>transformers</td></tr><tr><th>licence</th><td>other</td></tr><tr><th>last modified</th><td>2026-08-31T10:59:41.000Z</td></tr><tr><th>files in the repository</th><td>154</td></tr><tr><th>weight shards</th><td>141</td></tr><tr><th>architecture class</th><td>GlmMoeDsaForCausalLM</td></tr><tr><th>model type</th><td>glm_moe_dsa</td></tr><tr><th>declared tags</th><td>transformers, safetensors, glm_moe_dsa, text-generation, conversational, en, zh, arxiv:2602.15763, license:other, eval-results</td></tr></table><p class="endpoint">Read from <a href="https://huggingface.co/api/models/zai-org/GLM-5.3">https://huggingface.co/api/models/zai-org/GLM-5.3</a> on 31 August 2026.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://huggingface.co/zai-org/GLM-5.3">zai-org/GLM-5.3</a></li><li><a href="https://huggingface.co/zai-org/GLM-5.3/blob/main/config.json">config.json</a></li><li><a href="https://huggingface.co/zai-org/GLM-5.3#model-card">Model card</a></li></ol></div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Praxist: an autonomous research system that ships mostly as worked examples</title>
+<meta name="description" content="Praxist from sapientinc is a Python system for coordinating parallel agent-driven research on projects whose objective is already measurable. Its repository layout is unusual enough to matter: the engine is a small fraction of the tree, and the examples are the product surface most readers will actu">
+<meta property="og:title" content="Praxist: an autonomous research system that ships mostly as worked examples">
+<meta property="og:description" content="Praxist from sapientinc is a Python system for coordinating parallel agent-driven research on projects whose objective is already measurable. Its repository layout is unusual enough to matter: the engine is a small fraction of the tree, and the examples are the product surface most readers will actu">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<span class="eyebrow">Explainer</span>
+<h1>Praxist: an autonomous research system that ships mostly as worked examples</h1>
+<div class="meta">01 September 2026 · 4 sources</div>
+<p class="lead">Praxist from sapientinc is a Python system for coordinating parallel agent-driven research on projects whose objective is already measurable. Its repository layout is unusual enough to matter: the engine is a small fraction of the tree, and the examples are the product surface most readers will actually touch.</p>
+<h2 class="section">What it is</h2>
+<p class="item">Praxist describes itself as an autonomous research system for measurable, computer-executable research. The README frames it as coordinating parallel research peers, task-owned evaluation, durable evidence, and generation-to-generation synthesis. The intended use case is narrow and stated plainly: a project that already runs, has a measurable objective, and no obvious next step.</p>
+<p class="item">The distinction the README draws is between research as a persistent process and research as a sequence of disconnected prompts. That is a claim about state, not about model quality. Praxist expects to hold onto evidence and evaluation results across runs and to feed one generation of work into the next, which is why the repository carries so much structure beyond the library itself.</p>
+<p class="item">It is Python, requires 3.11 or later, and installs from PyPI with an extras set for agent and Codex integrations. The license is not one GitHub recognizes automatically; the README refers to a Fair Source License and a User Agreement presented during setup, so read those before assuming standard open-source terms.</p>
+<h2 class="section">Why it is getting attention now</h2>
+<p class="item">The repository sits at 6782 stars with 20 open issues and was last pushed on 2026-09-01T16:26:03Z, so it is actively maintained rather than parked. There is an arXiv paper behind it, arXiv 2608.25955, plus hosted documentation and a Discord, which is the usual shape of a lab release intended to be adopted rather than merely cited.</p>
+<p class="item">The timing fits a general shift from single-shot agent runs toward systems that persist evaluation state. Praxist&#x27;s pitch is aimed at people who already have a benchmark or metric and want a process that keeps pushing against it, not at people looking for a general assistant.</p>
+<h2 class="section">How it is put together</h2>
+<p class="item">The repository tracks 4547 files. Of those, 3742 live under examples/, 306 under praxist/, 192 under tests/, and 176 under templates/. The engine is therefore a small minority of the tree, and the examples are the bulk of what you clone. The file-type breakdown reinforces this: .rs leads with 2430 files, ahead of .py at 535, .md at 501, and .json at 220. A repository whose primary language is Python contains substantially more Rust files than Python files, and essentially all of that Rust is example payload rather than the system itself.</p>
+<p class="item">The unit of organization inside examples/ is visible from a single path: examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md. That is example, then task, then role, then a skill.md defining that role. The file itself is short and imperative: it tells the allocator role to own only constrained allocation of pitch/yaw moment demand to gimbal_y/z and grid_y/z, to use a small QP or weighted least squares over a listed set of terms, and it fixes hard constraints, grid_roll is zero and RCS must never enter the y-z allocation matrix.</p>
+<p class="item">The implication is that a Praxist project is defined largely in prose. A role is a scoped mandate with explicit exclusions, and parallel peers are separated by making those mandates non-overlapping. Files named skill.md recur throughout examples/, so this pattern is the repeated structural unit, not a one-off. templates/ with its 176 files is the natural place to look for the scaffolding used to generate new tasks and roles, and tests/ at 192 files covers the engine rather than the examples.</p>
+<h2 class="section">How you would actually use it</h2>
+<p class="item">Installation is a single pip command against PyPI for the praxist package with the agents and codex extras, followed by praxist setup --interactive --install-skills codex. The README is explicit that the wizard covers license acceptance, the user agreement, privacy, runtime profile, masked credentials, Codex skills, writable examples, and readiness checks, and that it does not select a research project or launch a run. An agent-managed path exists too: open Codex and ask it to install and configure Praxist from the packaged OOBE runbook, stopping after readiness checks. There is a separate host-specific command documented for Claude Code.</p>
+<p class="item">Starting actual research is a distinct step. The README points at the Quickstart and Your First Task docs, which describe a takeover step and the project contract it creates. Do not expect setup completion to mean the system is working on anything.</p>
+<p class="item">On model backends, Codex-native mode uses an existing Codex subscription with no API key. For sustained research the README says Praxist generally favors open-source model APIs with a high observed cache-hit rate, which is a cost signal: this is a system that re-reads a large persistent context repeatedly, and cache behavior dominates the bill.</p>
+<h2 class="section">What it does not do, or where you would be careful</h2>
+<p class="item">It is not for exploratory work without a metric. The README&#x27;s own scoping sentence, a project that already runs with a measurable objective, is the honest boundary. If you cannot express success as something a computer can evaluate, the task-owned evaluation machinery has nothing to grip.</p>
+<p class="item">The license is the first thing to check. GitHub reports it as NOASSERTION, and the README refers to a Fair Source License plus a User Agreement accepted during setup. That is a deliberate choice by the publisher, and it means commercial use needs a read of the actual terms rather than an assumption.</p>
+<p class="item">Operationally, note the shape of the repository before cloning it into a constrained environment: 3742 of the 4547 tracked files are examples, and the setup wizard mentions writable examples, so the examples tree is expected to be modified in place rather than treated as read-only reference. Also note that the effective specification of a Praxist project lives in markdown role files. There is no type checker for a mandate. Constraints like RCS must never enter the y-z allocation matrix are enforced by the model reading the file, so scoping roles precisely, including what each role must not touch, is the real engineering work.</p>
+<div class="facts"><h2>Measured</h2><table><tr><th>stars</th><td>6782</td></tr><tr><th>primary language</th><td>Python</td></tr><tr><th>license</th><td>NOASSERTION</td></tr><tr><th>last pushed</th><td>2026-09-01T16:26:03Z</td></tr><tr><th>open issues</th><td>20</td></tr><tr><th>tracked files</th><td>4547</td></tr><tr><th>files under examples/</th><td>3742</td></tr><tr><th>files under praxist/</th><td>306</td></tr><tr><th>files under tests/</th><td>192</td></tr><tr><th>files under templates/</th><td>176</td></tr><tr><th>most common file types</th><td>.rs (2430), .py (535), .md (501), .json (220)</td></tr></table><p class="endpoint">Read from <a href="https://api.github.com/repos/sapientinc/PRAXIST">https://api.github.com/repos/sapientinc/PRAXIST</a>, <a href="https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main">https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main</a> on 01 September 2026.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://github.com/sapientinc/PRAXIST">sapientinc/PRAXIST</a></li><li><a href="https://github.com/sapientinc/PRAXIST">Repository description</a></li><li><a href="https://github.com/sapientinc/PRAXIST#readme">README</a></li><li><a href="https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md">examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md (one of 134 files named skill.md)</a></li></ol></div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepSeek Harness: an agent runtime where the plugin graph is the product</title>
+<meta name="description" content="DeepSeek Harness (`dsh`) is an MIT-licensed, TypeScript agent harness from DeepSeek AI, built on the Cordis plugin framework and shipped as a large monorepo. If you are evaluating agent runtimes to build on rather than just run, the way this repository is partitioned tells you more than the README d">
+<meta property="og:title" content="DeepSeek Harness: an agent runtime where the plugin graph is the product">
+<meta property="og:description" content="DeepSeek Harness (`dsh`) is an MIT-licensed, TypeScript agent harness from DeepSeek AI, built on the Cordis plugin framework and shipped as a large monorepo. If you are evaluating agent runtimes to build on rather than just run, the way this repository is partitioned tells you more than the README d">
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<style>
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
+  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
+  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
+.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
+.item{margin-top:22px}
+figure{margin:30px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
+.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
+.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
+  vertical-align:top;white-space:nowrap}
+.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
+.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
+.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
+.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
+.sources li{margin:8px 0}
+.index{list-style:none;margin:0;padding:0}
+.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
+.index a{text-decoration:none;color:var(--ink)}
+.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
+.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
+.index a:hover h2{color:var(--accent)}
+.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--muted)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
+</style>
+</head><body><div class="wrap">
+<header class="site">
+  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
+  <p>Four desks. Every claim linked to where it came from.</p>
+</header>
+<span class="eyebrow">Explainer</span>
+<h1>DeepSeek Harness: an agent runtime where the plugin graph is the product</h1>
+<div class="meta">01 September 2026 · 4 sources</div>
+<p class="lead">DeepSeek Harness (`dsh`) is an MIT-licensed, TypeScript agent harness from DeepSeek AI, built on the Cordis plugin framework and shipped as a large monorepo. If you are evaluating agent runtimes to build on rather than just run, the way this repository is partitioned tells you more than the README does.</p>
+<h2 class="section">What it is</h2>
+<p class="item">DeepSeek Harness is an open-source agent harness developed by DeepSeek AI, distributed on npm as `@deepseek-ai/dsh`. Its one-line description is &quot;Everything is a Plugin,&quot; and that is meant literally: the project is built on an everything-is-a-plugin architecture powered by Cordis, whose design is written up in a paper the README links, &quot;A Programming Paradigm for Spatiotemporal Composability.&quot;</p>
+<p class="item">The primary entry point is a local web UI. Running `npx @deepseek-ai/dsh web` starts a server at http://127.0.0.1:3080 by default and opens a browser for a local launch; an SSH launch only prints the host URL, because the SSH client or editor owns the forwarded local address. A `--no-open` flag suppresses the browser.</p>
+<p class="item">The license is MIT, with third-party dependency licenses disclosed separately in THIRD_PARTY_NOTICES.md. The project describes itself as being in developer preview and states plainly that there will be compatibility-breaking changes.</p>
+<h2 class="section">Why it is getting attention now</h2>
+<p class="item">The headline signal is scale of interest: 209100 stars, on a repository last pushed 2026-09-02T10:02:55Z. A first-party agent harness from a major model lab, released under MIT rather than a source-available license, is a different proposition from a wrapper library, and the star count reflects that.</p>
+<p class="item">The issue count is worth reading carefully rather than as a quality metric. Open issues stands at 0, and the README routes feedback and bug reports to GitHub Discussions instead. Issues are effectively not the intake channel here, so do not treat an empty tracker as evidence of a defect-free preview.</p>
+<p class="item">The project&#x27;s own framing is the more useful signal for planning: developer preview, iterating rapidly, breaking changes expected, and a SAFETY.md the README asks you to read before running anything.</p>
+<h2 class="section">How it is put together (use the file counts and the sample unit)</h2>
+<p class="item">There are 8876 tracked files. The largest single subtree is packages/, at 4479 files — consistent with a monorepo where the harness itself is decomposed into many small published units rather than one core library plus extensions. Next is .agents/ at 2596 files, a top-level directory given roughly comparable weight to the code packages; this is a repository where agent definitions are first-class tracked artifacts, not configuration tucked into a corner. Then snapshots/ at 658 files, and docs/ at 360.</p>
+<p class="item">The file-type mix reinforces this. Markdown leads at 2856 files, just ahead of TypeScript at 2819, with YAML at 1291 and JSON at 717. For a project whose primary language is TypeScript, having as much prose as code is unusual, and it lines up with the .agents/ and docs/ trees: prompts, agent specs, and contracts are the substance, not annotation. The YAML and JSON volume suggests declarative plugin manifests and fixtures carrying a lot of the wiring.</p>
+<p class="item">The sample unit shows what &quot;everything is a plugin&quot; costs and buys at the leaf level. native/landlock-run/packages/entry/src/index.ts is a JavaScript API over a prebuilt Landlock launcher binary — note the nesting: a native component that is itself a packages/ tree. Its module docstring states that the package owns the launcher&#x27;s CLI contract, documented in docs/cli-contract.md, so consumers never parse launcher output or spell launcher flags themselves; the contract and the binaries version together in one package family, making probe-parsing drift against the binary structurally impossible. It exports LAUNCHER_BIN and LAUNCHER_FAILURE_EXIT, the latter being 125, the exit code for every launcher-level failure — usage error, unenforcing kernel, unopenable grant root, failed exec. Because a wrapped command may also return 125 after a successful exec, consumers must additionally require a matching launcher-owned fatal diagnostic to attribute the failure to the launcher.</p>
+<p class="item">Two design commitments are stated explicitly in that same file and are worth generalising from. First, policy stays with the consumer: the package does not know what a &quot;sandbox mode&quot; is, only which paths are granted read or write. Second, there are deliberately no environment-variable overrides anywhere in the module, on the grounds that which binary confines a process must never be decidable by the ambient environment; test injection is by function parameter instead. That is a boundary drawn against configurability on purpose, which is a reasonable thing to expect elsewhere in a codebase organised this way.</p>
+<h2 class="section">How you would actually use it</h2>
+<p class="item">The npm path is the fast one: install Node.js, run `npx @deepseek-ai/dsh web`, and work in the web UI. The user-facing documentation for that is docs/user/guide/index.md, with a hosted documentation site at https://deepseek-harness.github.io/deepseek-harness/.</p>
+<p class="item">From a checkout, the sequence is `git clone`, `pnpm install`, `pnpm run build`, then `pnpm dsh web`. The distinction the README draws matters in a monorepo this size: `pnpm run build` prepares the repository artifacts, and `pnpm dsh web` uses those built artifacts without rebuilding. If you are iterating on a package, you own the rebuild step.</p>
+<p class="item">If you are writing a plugin, the README asks you to tag your repository with the `dsh-plugin` GitHub topic for discoverability. For working on the harness itself, the starting points are docs/development.md and docs/architecture.md, plus CONTRIBUTING.md; there is also an AGENTS.md that the README directs agents to follow, which is consistent with the size of the .agents/ tree.</p>
+<h2 class="section">What it does not do, or where you would be careful</h2>
+<p class="item">Take the developer-preview warning at face value. The project states in bold that there will be compatibility-breaking changes, and in a monorepo where the plugin surface is spread across a packages/ tree of 4479 files, breaking changes can land in units you depend on without touching anything you would think to watch. Pin versions, and expect the plugin API to move.</p>
+<p class="item">The sandbox story is partial by construction, and the code says so. The Landlock probe reports `full` when the running kernel enforces every access the launcher can govern, `partial` when an older Landlock ABI governs only a subset — still confined for everything it supports — and `unusable` when nothing can be enforced, such as on a kernel without Landlock. Landlock is Linux-specific, so on other hosts you should not assume this layer is doing anything for you, and you should read SAFETY.md before running the harness against anything you care about.</p>
+<p class="item">Finally, the intake channel: with open issues at 0 and feedback directed to GitHub Discussions and Discord, there is no public issue backlog to search before you hit a problem. That removes the usual way of checking whether a bug is known, and is worth factoring into how much of your own diagnosis you plan to do.</p>
+<div class="facts"><h2>Measured</h2><table><tr><th>stars</th><td>209100</td></tr><tr><th>primary language</th><td>TypeScript</td></tr><tr><th>license</th><td>MIT</td></tr><tr><th>last pushed</th><td>2026-09-02T10:02:55Z</td></tr><tr><th>open issues</th><td>0</td></tr><tr><th>tracked files</th><td>8876</td></tr><tr><th>files under packages/</th><td>4479</td></tr><tr><th>files under .agents/</th><td>2596</td></tr><tr><th>files under snapshots/</th><td>658</td></tr><tr><th>files under docs/</th><td>360</td></tr><tr><th>most common file types</th><td>.md (2856), .ts (2819), .yaml (1291), .json (717)</td></tr></table><p class="endpoint">Read from <a href="https://api.github.com/repos/deepseek-ai/deepseek-harness">https://api.github.com/repos/deepseek-ai/deepseek-harness</a>, <a href="https://api.github.com/repos/deepseek-ai/deepseek-harness/git/trees/master">https://api.github.com/repos/deepseek-ai/deepseek-harness/git/trees/master</a> on 01 September 2026.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://github.com/deepseek-ai/deepseek-harness">deepseek-ai/deepseek-harness</a></li><li><a href="https://github.com/deepseek-ai/deepseek-harness">Repository description</a></li><li><a href="https://github.com/deepseek-ai/deepseek-harness#readme">README</a></li><li><a href="https://github.com/deepseek-ai/deepseek-harness/blob/HEAD/native/landlock-run/packages/entry/src/index.ts">native/landlock-run/packages/entry/src/index.ts (one of 330 files named index.ts)</a></li></ol></div>
+<footer>
+  Generated automatically. Every claim links to its source; connective prose is
+  AI-assisted and no figure appears that its sources do not support.<br>
+  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+</footer>
+</div></body></html>
