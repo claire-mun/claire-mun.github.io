@@ -2,17 +2,17 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조</title>
-<meta name="description" content="sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.">
-<meta property="og:title" content="PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조">
-<meta property="og:description" content="sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.">
+<title>저장소 · SOURCED</title>
+<meta name="description" content="GitHub 프로젝트를 파일 트리에서 읽습니다">
+<meta property="og:title" content="저장소 · SOURCED">
+<meta property="og:description" content="GitHub 프로젝트를 파일 트리에서 읽습니다">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SOURCED">
 <link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
-<link rel="canonical" href="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><meta property="og:url" content="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조","description":"sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.","datePublished":"2026-09-01T15:46:11.969135+00:00","dateModified":"2026-09-01T15:46:11.969135+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/gh-sapientinc-praxist.html","mainEntityOfPage":"https://claire-mun.github.io/articles/gh-sapientinc-praxist.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"저장소","citation":["https://github.com/sapientinc/PRAXIST","https://github.com/sapientinc/PRAXIST","https://github.com/sapientinc/PRAXIST#readme","https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md"]}</script>
+<link rel="canonical" href="https://claire-mun.github.io/repos.html"><meta property="og:url" content="https://claire-mun.github.io/repos.html">
 <style>
 :root{
   --paper:#EDF0F3; --surface:#FFFFFF; --ink:#0F1720; --muted:#4E5C69;
@@ -261,55 +261,10 @@ pre { line-height: 125%; }
   <a class="name" href="https://claire-mun.github.io/">SOURCED<b>.</b></a>
   <nav><a href="https://claire-mun.github.io/repos.html" aria-current="page">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<div class="piece"><aside class="toc"><h2>목차</h2><ol><li><a href="#s1">이게 무엇인가</a></li><li><a href="#s2">지금 주목받는 이유</a></li><li><a href="#s3">어떻게 구성돼 있나</a></li><li><a href="#s4">실제로 어떻게 쓰는가</a></li><li><a href="#s5">무엇을 못 하는가, 어디를 조심해야 하나</a></li></ol></aside><div class="col"><a class="eyebrow" href="https://claire-mun.github.io/repos.html">저장소</a>
-<h1>PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조</h1>
-<div class="meta">2026년 09월 01일 · 출처 <b>4</b>곳</div>
-<p class="lead">sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.</p>
-<h2 class="section" id="s1"><span class="n">01</span>이게 무엇인가</h2>
-<p class="item">저장소 설명은 한 줄입니다. &quot;Autonomous research system for measurable, computer-executable research.&quot; README는 여기에 네 가지 축을 덧붙입니다. 병렬 research peer의 조율, task가 소유하는 평가, 지속되는 evidence, 그리고 세대에서 세대로 이어지는 synthesis입니다.</p>
-<p class="item">핵심 주장은 도구가 아니라 시간 축에 있습니다. README는 연구를 &quot;단절된 프롬프트의 나열&quot;이 아니라 지속되는 프로세스로 다룬다고 적고, 적용 조건을 명시합니다. 프로젝트가 이미 돌아가고 있고 목표가 측정 가능하지만 다음에 뭘 해야 할지는 아직 모를 때 쓰라는 것입니다. 목표를 숫자로 정의할 수 없는 작업은 대상이 아닙니다.</p>
-<p class="item">라이선스는 NOASSERTION으로 잡혀 있습니다. README에 Fair Source License와 User Agreement가 설치 마법사 단계로 등장하는 것과 함께 보면, 표준 OSI 라이선스가 아니라는 뜻입니다. 도입을 검토한다면 여기부터 읽어야 합니다.</p>
-<h2 class="section" id="s2"><span class="n">02</span>지금 주목받는 이유</h2>
-<p class="item">스타는 6783개, 열린 이슈는 20개, 마지막 푸시는 2026-09-01T16:26:03Z입니다. 활동이 멈춘 저장소는 아닙니다.</p>
-<p class="item">README는 arXiv 2608.25955 배지를 달고 있습니다. 논문이 딸린 시스템이라는 점, 그리고 문서 사이트와 Discord가 별도로 있다는 점이 단발성 공개와 구분되는 지점입니다.</p>
-<p class="item">또 하나는 실행 환경 선택지입니다. README는 API 키 없이 기존 Codex 구독을 그대로 쓰는 Codex-native mode를 제시하면서, 지속적인 연구에는 캐시 적중률이 높은 open-source model API 쪽을 일반적으로 선호한다고 적습니다. 장시간 돌리는 시스템에서 비용이 어디서 새는지를 전제로 깔고 있는 설계입니다.</p>
-<div class="code"><div class="bar"><a class="path" href="https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md">examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md (skill.md 이름의 파일 134개 중 하나)</a><button class="copy" type="button">복사</button></div><pre><code># Allocator YZ
-
-Own only constrained allocation of pitch/yaw moment demand to gimbal_y/z and
-grid_y/z. Use a small QP or weighted least squares with amplitude, rate,
-dynamic-pressure authority, moment residual, smoothness, and gimbal translation
-reserve. `grid_roll=0`; RCS must never enter the y-z allocation matrix.
-</code></pre></div>
-<h2 class="section" id="s3"><span class="n">03</span>어떻게 구성돼 있나</h2>
-<p class="item">추적 파일은 4547개입니다. 이 중 examples/ 아래가 3742개로 가장 큽니다. 코드 본체인 praxist/는 306개, tests/는 192개, templates/는 176개입니다. 즉 이 저장소에서 부피를 차지하는 것은 엔진이 아니라 그 엔진이 다뤄야 할 연구 과제들입니다.</p>
-<p class="item">파일 종류를 보면 방향이 더 분명해집니다. 주 언어는 Python이고 .py가 535개인데, 가장 많은 확장자는 .rs로 2430개입니다. Rust 코드가 praxist/ 본체 크기를 훨씬 넘어서는 규모로 존재한다는 것은, 그 대부분이 예제 연구 대상의 피험체 코드라는 뜻입니다. .md 501개, .json 220개가 뒤를 잇습니다. 마크다운과 JSON이 이 정도로 많다는 것은 지시문과 상태·평가 기록이 파일로 남는 구조임을 시사합니다.</p>
-<p class="item">실제 예제 하나를 보면 조직 단위가 드러납니다. examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md라는 경로입니다. example 아래에 task가 있고, task 아래에 role이 있고, role마다 skill.md가 놓입니다. 그 파일 내용은 이렇습니다. &quot;Own only constrained allocation of pitch/yaw moment demand to gimbal_y/z and grid_y/z.&quot; 이어서 QP 또는 가중 최소자승을 쓰라는 방법 지시와 함께 grid_roll은 0이며 RCS는 y-z 배분 행렬에 절대 들어가서는 안 된다는 금지 조건이 붙습니다.</p>
-<p class="item">읽어낼 점은 role의 좁기입니다. 한 role에게 시스템 전체가 아니라 축 하나의 배분만 맡기고, 허용된 수단과 침범 금지 경계를 문서에 못 박아 둡니다. 병렬 peer를 굴린다는 README의 서술은 이 단위 위에서 성립합니다. 경계가 문장으로 고정돼 있어야 여러 peer가 같은 목표를 동시에 건드려도 결과를 비교할 수 있습니다.</p>
-<h2 class="section" id="s4"><span class="n">04</span>실제로 어떻게 쓰는가</h2>
-<p class="item">README의 설치는 pip 설치와 praxist setup --interactive --install-skills codex를 한 줄로 잇습니다. 마법사가 처리하는 항목은 라이선스와 User Agreement 동의, 프라이버시, 런타임 프로필, 마스킹된 자격 증명, Codex skills, 쓰기 가능한 examples, readiness check입니다. Claude Code용으로는 별도의 host-specific 한 줄 명령이 문서에 있습니다.</p>
-<p class="item">주목할 것은 마법사가 하지 않는 일입니다. README는 연구 프로젝트를 고르지도, 실행을 시작하지도 않는다고 명시합니다. 그 사이에 takeover라는 별도 단계가 있고, 이 단계가 project contract를 만듭니다. Quickstart와 Your First Task를 먼저 읽으라고 요구하는 이유가 여기 있습니다. 설치가 끝났다고 연구가 시작되는 구조가 아닙니다.</p>
-<p class="item">에이전트에게 설치를 맡기는 경로도 있습니다. codex --yolo로 들어가 패키징된 OOBE 런북으로 설치·설정하게 하되 readiness check 이후에는 멈추라고 지시하는 방식입니다. 여기서도 멈춤 지점은 동일합니다.</p>
-<h2 class="section" id="s5"><span class="n">05</span>무엇을 못 하는가, 어디를 조심해야 하나</h2>
-<p class="item">적용 범위가 README에 스스로 좁혀져 있습니다. 목표가 측정 가능해야 하고, 프로젝트가 이미 돌아가고 있어야 합니다. 평가 지표를 정의하지 못하는 문제, 또는 실행 자체가 아직 없는 문제에는 이 시스템의 전제가 성립하지 않습니다.</p>
-<p class="item">라이선스가 NOASSERTION이라는 점은 사내 도입 시 가장 먼저 걸리는 항목입니다. 설치 마법사가 Fair Source License와 User Agreement 동의를 요구한다는 것은, 개인이 클릭으로 넘길 수 있는 조건과 조직이 검토해야 할 조건이 같지 않을 수 있다는 뜻입니다.</p>
-<p class="item">운영 측면에서는 비용 구조를 미리 봐야 합니다. README가 캐시 적중률을 근거로 모델 API 선택을 권하는 것은, 장시간 자율 실행에서 토큰 소비가 결과보다 먼저 문제가 된다는 신호로 읽힙니다. 여기서는 벤치마크를 확인하지 않았으므로, 실제 비용과 성능은 각자의 환경에서 검증할 대상입니다.</p>
-<p class="item">마지막으로 저장소 형태 자체가 주의점입니다. 4547개 파일 중 3742개가 examples/이고 .rs가 2430개인 저장소를 클론한다는 것은, 대부분이 예제 자산이라는 뜻입니다. 자기 프로젝트에 붙일 때 실제로 상대할 코드는 praxist/의 306개와 templates/의 176개 쪽입니다.</p>
-<div class="facts"><h2>측정값</h2><table><tr><th>스타</th><td class="num"><span>6783</span></td></tr><tr><th>주 언어</th><td>Python</td></tr><tr><th>라이선스</th><td>NOASSERTION</td></tr><tr><th>마지막 푸시</th><td>2026-09-01T16:26:03Z</td></tr><tr><th>열린 이슈</th><td class="num"><span>20</span></td></tr><tr><th>추적 파일 수</th><td class="num"><span>4547</span></td></tr><tr class="bar" style="--fill:100.0%"><th>examples/ 아래 파일</th><td class="num"><span>3742</span></td></tr><tr class="bar" style="--fill:8.2%"><th>praxist/ 아래 파일</th><td class="num"><span>306</span></td></tr><tr class="bar" style="--fill:5.1%"><th>tests/ 아래 파일</th><td class="num"><span>192</span></td></tr><tr class="bar" style="--fill:4.7%"><th>templates/ 아래 파일</th><td class="num"><span>176</span></td></tr><tr><th>가장 많은 파일 종류</th><td>.rs (2430), .py (535), .md (501), .json (220)</td></tr></table><p class="endpoint">2026-09-01 측정 · <a href="https://api.github.com/repos/sapientinc/PRAXIST">https://api.github.com/repos/sapientinc/PRAXIST</a> · <a href="https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main">https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main</a></p></div>
-<div class="sources"><h2>출처</h2><ol><li><a href="https://github.com/sapientinc/PRAXIST">sapientinc/PRAXIST</a></li><li><a href="https://github.com/sapientinc/PRAXIST">저장소 설명</a></li><li><a href="https://github.com/sapientinc/PRAXIST#readme">README</a></li><li><a href="https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md">examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md (skill.md 이름의 파일 134개 중 하나)</a></li></ol></div></div></div>
+<div class="hero"><h1>저장소</h1><p>GitHub 프로젝트를 파일 트리에서 읽습니다</p></div><ul class="index"><li><a href="https://claire-mun.github.io/articles/gh-guillaumemeyer-watermarks-remover.html"><h3>watermarks-remover: 스킬은 얇게, 무거운 일은 로컬 HTTP 서비스로 分離한 구조</h3><span class="when mono">2026.09.01</span><p>AI 생성 콘텐츠에 붙는 provenance 표식을 텍스트와 파일에서 제거하는 MIT 라이선스 Python 프로젝트입니다. 에이전트 스킬과 실행 서비스를 분리한 설계, 그리고 저장소 파일 분포가 드러내는 우선순위에 관심 있는 엔지니어를 위한 글입니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/gh-anywhere-labs-dsh-desktop.html"><h3>DSH Desktop: 데스크톱 자체를 플러그인으로 취급하는 DeepSeek Harness 클라이언트</h3><span class="when mono">2026.09.01</span><p>DeepSeek Harness의 로컬 Web UI, Host 서비스, 플러그인 시스템을 Windows·macOS 네이티브 앱으로 감싼 MIT 라이선스 TypeScript 프로젝트입니다. 데스크톱 셸을 확장 가능한 런타임으로 설계한 사례를 보려는 엔지니어, 그리고 DSH 플러그인을 직접 만들 사람에게 의미가 있습니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><h3>PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조</h3><span class="when mono">2026.09.01</span><p>sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/gh-deepseek-ai-deepseek-harness.html"><h3>DeepSeek Harness: &#x27;모든 것이 플러그인&#x27;이라는 구조가 저장소에 남긴 흔적</h3><span class="when mono">2026.09.01</span><p>DeepSeek AI가 공개한 오픈소스 에이전트 하네스 dsh는 Cordis 위에서 모든 기능을 플러그인으로 취급하는 구조를 택했습니다. 에이전트 실행 환경을 직접 조립하거나, 샌드박스·플러그인 경계를 어떻게 그을지 고민하는 엔지니어에게 참고가 되는 사례입니다.</p></a></li></ul>
 <footer>
   모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
   <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>
   · <a href="https://claire-mun.github.io/feed.xml">RSS</a>
 </footer>
-</div><script>
-document.querySelectorAll('.code').forEach(function(box){
-  var button=box.querySelector('.copy'),code=box.querySelector('code');
-  if(!button||!code)return;
-  button.addEventListener('click',function(){
-    navigator.clipboard.writeText(code.textContent).then(function(){
-      var was=button.textContent;button.textContent='복사됨';
-      setTimeout(function(){button.textContent=was;},1400);
-    });
-  });
-});
-</script></body></html>
+</div></body></html>

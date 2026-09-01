@@ -2,17 +2,17 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조</title>
-<meta name="description" content="sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.">
-<meta property="og:title" content="PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조">
-<meta property="og:description" content="sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.">
+<title>Qwen-Drive-1.0: VLM 구조를 그대로 두고 자율주행 3D 인지와 계획을 붙인 방식</title>
+<meta name="description" content="사전학습된 vision-language model의 아키텍처를 유지한 채, 외부 BEV 인지 헤드와 Planning Expert를 공유 표현 위에 얹은 자율주행 파운데이션 모델 제안입니다. 주행 스택에 VLM을 넣으려는 엔지니어, 특히 인지와 계획의 인터페이스를 어디에 둘지 고민하는 쪽이 볼 만합니다.">
+<meta property="og:title" content="Qwen-Drive-1.0: VLM 구조를 그대로 두고 자율주행 3D 인지와 계획을 붙인 방식">
+<meta property="og:description" content="사전학습된 vision-language model의 아키텍처를 유지한 채, 외부 BEV 인지 헤드와 Planning Expert를 공유 표현 위에 얹은 자율주행 파운데이션 모델 제안입니다. 주행 스택에 VLM을 넣으려는 엔지니어, 특히 인지와 계획의 인터페이스를 어디에 둘지 고민하는 쪽이 볼 만합니다.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SOURCED">
 <link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
-<link rel="canonical" href="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><meta property="og:url" content="https://claire-mun.github.io/articles/gh-sapientinc-praxist.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조","description":"sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.","datePublished":"2026-09-01T15:46:11.969135+00:00","dateModified":"2026-09-01T15:46:11.969135+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/gh-sapientinc-praxist.html","mainEntityOfPage":"https://claire-mun.github.io/articles/gh-sapientinc-praxist.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"저장소","citation":["https://github.com/sapientinc/PRAXIST","https://github.com/sapientinc/PRAXIST","https://github.com/sapientinc/PRAXIST#readme","https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md"]}</script>
+<link rel="canonical" href="https://claire-mun.github.io/articles/arxiv-2609-00111.html"><meta property="og:url" content="https://claire-mun.github.io/articles/arxiv-2609-00111.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Qwen-Drive-1.0: VLM 구조를 그대로 두고 자율주행 3D 인지와 계획을 붙인 방식","description":"사전학습된 vision-language model의 아키텍처를 유지한 채, 외부 BEV 인지 헤드와 Planning Expert를 공유 표현 위에 얹은 자율주행 파운데이션 모델 제안입니다. 주행 스택에 VLM을 넣으려는 엔지니어, 특히 인지와 계획의 인터페이스를 어디에 둘지 고민하는 쪽이 볼 만합니다.","datePublished":"2026-09-01T20:04:05.281456+00:00","dateModified":"2026-09-01T20:04:05.281456+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/arxiv-2609-00111.html","mainEntityOfPage":"https://claire-mun.github.io/articles/arxiv-2609-00111.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"논문","citation":["https://arxiv.org/abs/2609.00111","https://arxiv.org/abs/2609.00111"]}</script>
 <style>
 :root{
   --paper:#EDF0F3; --surface:#FFFFFF; --ink:#0F1720; --muted:#4E5C69;
@@ -259,57 +259,36 @@ pre { line-height: 125%; }
 </head><body><div class="shell">
 <header class="site">
   <a class="name" href="https://claire-mun.github.io/">SOURCED<b>.</b></a>
-  <nav><a href="https://claire-mun.github.io/repos.html" aria-current="page">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
+  <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html" aria-current="page">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<div class="piece"><aside class="toc"><h2>목차</h2><ol><li><a href="#s1">이게 무엇인가</a></li><li><a href="#s2">지금 주목받는 이유</a></li><li><a href="#s3">어떻게 구성돼 있나</a></li><li><a href="#s4">실제로 어떻게 쓰는가</a></li><li><a href="#s5">무엇을 못 하는가, 어디를 조심해야 하나</a></li></ol></aside><div class="col"><a class="eyebrow" href="https://claire-mun.github.io/repos.html">저장소</a>
-<h1>PRAXIST: 예제 트리가 본체보다 큰 자율 연구 시스템의 구조</h1>
-<div class="meta">2026년 09월 01일 · 출처 <b>4</b>곳</div>
-<p class="lead">sapientinc/PRAXIST는 측정 가능하고 컴퓨터로 실행 가능한 연구를 자동화하려는 Python 시스템입니다. 에이전트 런타임을 붙여 장기 실험을 굴리는 구조가 실제로 어떻게 조직돼 있는지 궁금한 엔지니어를 위한 글입니다.</p>
-<h2 class="section" id="s1"><span class="n">01</span>이게 무엇인가</h2>
-<p class="item">저장소 설명은 한 줄입니다. &quot;Autonomous research system for measurable, computer-executable research.&quot; README는 여기에 네 가지 축을 덧붙입니다. 병렬 research peer의 조율, task가 소유하는 평가, 지속되는 evidence, 그리고 세대에서 세대로 이어지는 synthesis입니다.</p>
-<p class="item">핵심 주장은 도구가 아니라 시간 축에 있습니다. README는 연구를 &quot;단절된 프롬프트의 나열&quot;이 아니라 지속되는 프로세스로 다룬다고 적고, 적용 조건을 명시합니다. 프로젝트가 이미 돌아가고 있고 목표가 측정 가능하지만 다음에 뭘 해야 할지는 아직 모를 때 쓰라는 것입니다. 목표를 숫자로 정의할 수 없는 작업은 대상이 아닙니다.</p>
-<p class="item">라이선스는 NOASSERTION으로 잡혀 있습니다. README에 Fair Source License와 User Agreement가 설치 마법사 단계로 등장하는 것과 함께 보면, 표준 OSI 라이선스가 아니라는 뜻입니다. 도입을 검토한다면 여기부터 읽어야 합니다.</p>
-<h2 class="section" id="s2"><span class="n">02</span>지금 주목받는 이유</h2>
-<p class="item">스타는 6783개, 열린 이슈는 20개, 마지막 푸시는 2026-09-01T16:26:03Z입니다. 활동이 멈춘 저장소는 아닙니다.</p>
-<p class="item">README는 arXiv 2608.25955 배지를 달고 있습니다. 논문이 딸린 시스템이라는 점, 그리고 문서 사이트와 Discord가 별도로 있다는 점이 단발성 공개와 구분되는 지점입니다.</p>
-<p class="item">또 하나는 실행 환경 선택지입니다. README는 API 키 없이 기존 Codex 구독을 그대로 쓰는 Codex-native mode를 제시하면서, 지속적인 연구에는 캐시 적중률이 높은 open-source model API 쪽을 일반적으로 선호한다고 적습니다. 장시간 돌리는 시스템에서 비용이 어디서 새는지를 전제로 깔고 있는 설계입니다.</p>
-<div class="code"><div class="bar"><a class="path" href="https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md">examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md (skill.md 이름의 파일 134개 중 하나)</a><button class="copy" type="button">복사</button></div><pre><code># Allocator YZ
-
-Own only constrained allocation of pitch/yaw moment demand to gimbal_y/z and
-grid_y/z. Use a small QP or weighted least squares with amplitude, rate,
-dynamic-pressure authority, moment residual, smoothness, and gimbal translation
-reserve. `grid_roll=0`; RCS must never enter the y-z allocation matrix.
-</code></pre></div>
-<h2 class="section" id="s3"><span class="n">03</span>어떻게 구성돼 있나</h2>
-<p class="item">추적 파일은 4547개입니다. 이 중 examples/ 아래가 3742개로 가장 큽니다. 코드 본체인 praxist/는 306개, tests/는 192개, templates/는 176개입니다. 즉 이 저장소에서 부피를 차지하는 것은 엔진이 아니라 그 엔진이 다뤄야 할 연구 과제들입니다.</p>
-<p class="item">파일 종류를 보면 방향이 더 분명해집니다. 주 언어는 Python이고 .py가 535개인데, 가장 많은 확장자는 .rs로 2430개입니다. Rust 코드가 praxist/ 본체 크기를 훨씬 넘어서는 규모로 존재한다는 것은, 그 대부분이 예제 연구 대상의 피험체 코드라는 뜻입니다. .md 501개, .json 220개가 뒤를 잇습니다. 마크다운과 JSON이 이 정도로 많다는 것은 지시문과 상태·평가 기록이 파일로 남는 구조임을 시사합니다.</p>
-<p class="item">실제 예제 하나를 보면 조직 단위가 드러납니다. examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md라는 경로입니다. example 아래에 task가 있고, task 아래에 role이 있고, role마다 skill.md가 놓입니다. 그 파일 내용은 이렇습니다. &quot;Own only constrained allocation of pitch/yaw moment demand to gimbal_y/z and grid_y/z.&quot; 이어서 QP 또는 가중 최소자승을 쓰라는 방법 지시와 함께 grid_roll은 0이며 RCS는 y-z 배분 행렬에 절대 들어가서는 안 된다는 금지 조건이 붙습니다.</p>
-<p class="item">읽어낼 점은 role의 좁기입니다. 한 role에게 시스템 전체가 아니라 축 하나의 배분만 맡기고, 허용된 수단과 침범 금지 경계를 문서에 못 박아 둡니다. 병렬 peer를 굴린다는 README의 서술은 이 단위 위에서 성립합니다. 경계가 문장으로 고정돼 있어야 여러 peer가 같은 목표를 동시에 건드려도 결과를 비교할 수 있습니다.</p>
-<h2 class="section" id="s4"><span class="n">04</span>실제로 어떻게 쓰는가</h2>
-<p class="item">README의 설치는 pip 설치와 praxist setup --interactive --install-skills codex를 한 줄로 잇습니다. 마법사가 처리하는 항목은 라이선스와 User Agreement 동의, 프라이버시, 런타임 프로필, 마스킹된 자격 증명, Codex skills, 쓰기 가능한 examples, readiness check입니다. Claude Code용으로는 별도의 host-specific 한 줄 명령이 문서에 있습니다.</p>
-<p class="item">주목할 것은 마법사가 하지 않는 일입니다. README는 연구 프로젝트를 고르지도, 실행을 시작하지도 않는다고 명시합니다. 그 사이에 takeover라는 별도 단계가 있고, 이 단계가 project contract를 만듭니다. Quickstart와 Your First Task를 먼저 읽으라고 요구하는 이유가 여기 있습니다. 설치가 끝났다고 연구가 시작되는 구조가 아닙니다.</p>
-<p class="item">에이전트에게 설치를 맡기는 경로도 있습니다. codex --yolo로 들어가 패키징된 OOBE 런북으로 설치·설정하게 하되 readiness check 이후에는 멈추라고 지시하는 방식입니다. 여기서도 멈춤 지점은 동일합니다.</p>
-<h2 class="section" id="s5"><span class="n">05</span>무엇을 못 하는가, 어디를 조심해야 하나</h2>
-<p class="item">적용 범위가 README에 스스로 좁혀져 있습니다. 목표가 측정 가능해야 하고, 프로젝트가 이미 돌아가고 있어야 합니다. 평가 지표를 정의하지 못하는 문제, 또는 실행 자체가 아직 없는 문제에는 이 시스템의 전제가 성립하지 않습니다.</p>
-<p class="item">라이선스가 NOASSERTION이라는 점은 사내 도입 시 가장 먼저 걸리는 항목입니다. 설치 마법사가 Fair Source License와 User Agreement 동의를 요구한다는 것은, 개인이 클릭으로 넘길 수 있는 조건과 조직이 검토해야 할 조건이 같지 않을 수 있다는 뜻입니다.</p>
-<p class="item">운영 측면에서는 비용 구조를 미리 봐야 합니다. README가 캐시 적중률을 근거로 모델 API 선택을 권하는 것은, 장시간 자율 실행에서 토큰 소비가 결과보다 먼저 문제가 된다는 신호로 읽힙니다. 여기서는 벤치마크를 확인하지 않았으므로, 실제 비용과 성능은 각자의 환경에서 검증할 대상입니다.</p>
-<p class="item">마지막으로 저장소 형태 자체가 주의점입니다. 4547개 파일 중 3742개가 examples/이고 .rs가 2430개인 저장소를 클론한다는 것은, 대부분이 예제 자산이라는 뜻입니다. 자기 프로젝트에 붙일 때 실제로 상대할 코드는 praxist/의 306개와 templates/의 176개 쪽입니다.</p>
-<div class="facts"><h2>측정값</h2><table><tr><th>스타</th><td class="num"><span>6783</span></td></tr><tr><th>주 언어</th><td>Python</td></tr><tr><th>라이선스</th><td>NOASSERTION</td></tr><tr><th>마지막 푸시</th><td>2026-09-01T16:26:03Z</td></tr><tr><th>열린 이슈</th><td class="num"><span>20</span></td></tr><tr><th>추적 파일 수</th><td class="num"><span>4547</span></td></tr><tr class="bar" style="--fill:100.0%"><th>examples/ 아래 파일</th><td class="num"><span>3742</span></td></tr><tr class="bar" style="--fill:8.2%"><th>praxist/ 아래 파일</th><td class="num"><span>306</span></td></tr><tr class="bar" style="--fill:5.1%"><th>tests/ 아래 파일</th><td class="num"><span>192</span></td></tr><tr class="bar" style="--fill:4.7%"><th>templates/ 아래 파일</th><td class="num"><span>176</span></td></tr><tr><th>가장 많은 파일 종류</th><td>.rs (2430), .py (535), .md (501), .json (220)</td></tr></table><p class="endpoint">2026-09-01 측정 · <a href="https://api.github.com/repos/sapientinc/PRAXIST">https://api.github.com/repos/sapientinc/PRAXIST</a> · <a href="https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main">https://api.github.com/repos/sapientinc/PRAXIST/git/trees/main</a></p></div>
-<div class="sources"><h2>출처</h2><ol><li><a href="https://github.com/sapientinc/PRAXIST">sapientinc/PRAXIST</a></li><li><a href="https://github.com/sapientinc/PRAXIST">저장소 설명</a></li><li><a href="https://github.com/sapientinc/PRAXIST#readme">README</a></li><li><a href="https://github.com/sapientinc/PRAXIST/blob/HEAD/examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md">examples/rocket_booster_recovery/task_GPU_server/roles/allocator_yz/skill.md (skill.md 이름의 파일 134개 중 하나)</a></li></ol></div></div></div>
+<div class="piece"><aside class="toc"><h2>목차</h2><ol><li><a href="#s1">이 논문이 주장하는 것</a></li><li><a href="#s2">어떤 문제를 풀려는 것인가</a></li><li><a href="#s3">제안한 방법의 구조</a></li><li><a href="#s4">무엇으로 검증했고 결과는 어떤가</a></li><li><a href="#s5">한계와, 이걸 실무에 옮길 때 생각할 점</a></li></ol></aside><div class="col"><a class="eyebrow" href="https://claire-mun.github.io/papers.html">논문</a>
+<h1>Qwen-Drive-1.0: VLM 구조를 그대로 두고 자율주행 3D 인지와 계획을 붙인 방식</h1>
+<div class="meta">2026년 09월 01일 · 출처 <b>2</b>곳</div>
+<p class="lead">사전학습된 vision-language model의 아키텍처를 유지한 채, 외부 BEV 인지 헤드와 Planning Expert를 공유 표현 위에 얹은 자율주행 파운데이션 모델 제안입니다. 주행 스택에 VLM을 넣으려는 엔지니어, 특히 인지와 계획의 인터페이스를 어디에 둘지 고민하는 쪽이 볼 만합니다.</p>
+<h2 class="section" id="s1"><span class="n">01</span>이 논문이 주장하는 것</h2>
+<p class="item">Qwen-Drive-1.0은 자율주행용 vision-language foundation model을 향한 초기 단계라고 스스로를 규정합니다. 핵심 주장은 사전학습된 VLM의 아키텍처를 바꾸지 않고도 3D perception, visual question answering, motion planning을 하나의 프레임워크 안에 통합할 수 있다는 것입니다.</p>
+<p class="item">두 번째 주장은 주행 능력을 얻는 과정에서 일반 시각 이해와 instruction-following 능력을 크게 잃지 않았다는 것입니다. 저자들은 실험에서 강한 3D 인지와 주행 장면 이해를 보이면서 general vision-language capability를 대체로 보존했다고 서술합니다.</p>
+<p class="item">arXiv 기준 cs.CV 단독 분류이고, 저자는 16명, 2026-08-31에 v1으로 공개된 뒤 같은 날짜가 최종 수정일입니다. 저자 코멘트에 따르면 코드는 https://github.com/QwenLM/Qwen-Drive-1.0 에 공개될 예정입니다. 공개 시점 기준으로는 아직 코드가 아니라 설계와 평가 결과를 읽는 단계입니다.</p>
+<h2 class="section" id="s2"><span class="n">02</span>어떤 문제를 풀려는 것인가</h2>
+<p class="item">VLM을 주행에 쓸 때 반복되는 문제는 두 가지입니다. 하나는 언어 모델이 만들어내는 표현 안에 3D 장면 구조가 실제로 얼마나 들어 있는지 확인할 방법이 없다는 것이고, 다른 하나는 주행 데이터로 계속 튜닝하다 보면 원래 갖고 있던 범용 시각 이해와 지시 수행 능력이 깎여나간다는 것입니다.</p>
+<p class="item">이 논문은 앞의 문제를 별도의 인지 헤드로, 뒤의 문제를 학습 레시피 구성으로 나눠서 다룹니다. 아키텍처를 재설계해 주행 전용 모델을 새로 만드는 대신, 사전학습 VLM을 그대로 두고 위에 무엇을 붙이느냐로 푸는 선택입니다.</p>
+<h2 class="section" id="s3"><span class="n">03</span>제안한 방법의 구조</h2>
+<p class="item">구조는 공유 VLM 표현을 중심에 두고 그 위에 두 개의 소비자를 붙인 형태입니다. 하나는 external bird&#x27;s-eye-view perception head이고, 다른 하나는 Planning Expert입니다.</p>
+<p class="item">BEV perception head는 3D object detection, semantic occupancy prediction, BEV map segmentation을 함께 수행합니다. 논문이 이 헤드에 부여하는 역할이 흥미로운데, 성능 모듈이면서 동시에 프로브(probe)입니다. 공유 표현에서 3D 정보를 어디까지 끌어낼 수 있는지 재는 장치이자, 3D 장면 구조에 대한 명시적이고 들여다볼 수 있는(inspectable) 인터페이스입니다. 즉 계획이 인지 출력을 경유하도록 강제하는 파이프라인이 아니라, 표현이 무엇을 담고 있는지 외부에서 검사할 수 있게 뽑아낸 창구에 가깝습니다.</p>
+<p class="item">Planning Expert는 이 BEV 출력이 아니라 공유 VLM 표현을 조건으로 받아 미래 ego trajectory를 생성합니다. 두 헤드가 같은 표현을 서로 다른 목적으로 읽는 병렬 구성이라는 점이 이 설계의 실질입니다.</p>
+<p class="item">학습은 staged training recipe로, 주행 감독 신호와 general-purpose vision-language 데이터를 결합합니다. 주행 능력 획득과 범용 능력 보존을 데이터 구성으로 같이 처리하는 방식입니다.</p>
+<h2 class="section" id="s4"><span class="n">04</span>무엇으로 검증했고 결과는 어떤가</h2>
+<p class="item">평가는 3D 인지와 주행 장면 이해, 그리고 general vision-language capability 보존 여부를 함께 봅니다. 후자를 별도로 측정한다는 점이 이 논문의 평가 설계에서 눈에 띄는 부분입니다.</p>
+<p class="item">motion planning은 open-loop, pseudo-closed-loop, closed-loop 세 가지 설정에서 평가했고, 논문은 이를 comprehensive evaluation으로 부르며 highly competitive한 성능이라고 서술합니다. 초록 수준에서는 구체적 지표값이 제시되지 않으므로, 비교 대상과 수치는 본문에서 확인해야 합니다.</p>
+<h2 class="section" id="s5"><span class="n">05</span>한계와, 이걸 실무에 옮길 때 생각할 점</h2>
+<p class="item">저자들 스스로 initial step이라고 표현합니다. 초록에서 general vision-language capability를 &#x27;largely preserving&#x27;이라고 쓴 것도 완전 보존이 아니라는 뜻으로 읽는 편이 안전합니다. 어느 축에서 얼마나 깎였는지는 본문 표를 봐야 합니다.</p>
+<p class="item">구조상 주의할 지점은 BEV 헤드의 위치입니다. 이 헤드가 계획 경로 안에 있지 않고 공유 표현을 읽는 프로브라면, 헤드가 보여주는 3D 출력이 좋다는 것과 Planning Expert가 그 정보를 실제로 활용한다는 것은 별개의 명제입니다. 인지 결과를 안전 검증의 근거로 쓰려는 팀이라면 이 분리를 먼저 확인해야 합니다. 다만 검사 가능한 인터페이스가 존재한다는 점 자체는, 표현이 무너졌을 때 그것을 관측할 수 있다는 뜻이라 운영 측면에서는 유리합니다.</p>
+<p class="item">재현 관점에서는 v1이 2026-08-31 공개이고 코드는 공개 예정 상태입니다. staged training recipe는 단계 구성과 데이터 비율이 결과를 좌우하는 종류의 방법이므로, 코드와 학습 설정이 실제로 공개되기 전까지는 재현 난이도를 낮게 잡지 않는 편이 좋습니다.</p>
+<div class="facts"><h2>측정값</h2><table><tr><th>저자 수</th><td class="num"><span>16</span></td></tr><tr><th>저자</th><td>Xin Zhou, Zongchuang Zhao, Zhibo Yang, Mingsheng Li, Humen Zhong, Shuai Bai, Du Chu, Ruizhe Chen 외</td></tr><tr><th>1차 분류</th><td>cs.CV</td></tr><tr><th>전체 분류</th><td>cs.CV</td></tr><tr><th>최초 공개</th><td>2026-08-31</td></tr><tr><th>최종 수정</th><td>2026-08-31</td></tr><tr><th>버전</th><td>v1</td></tr><tr><th>저자 코멘트</th><td>Code will be available at https://github.com/QwenLM/Qwen-Drive-1.0</td></tr></table><p class="endpoint">2026-09-01 측정 · <a href="https://export.arxiv.org/api/query">https://export.arxiv.org/api/query</a></p></div>
+<div class="sources"><h2>출처</h2><ol><li><a href="https://arxiv.org/abs/2609.00111">2609.00111</a></li><li><a href="https://arxiv.org/abs/2609.00111">초록 — Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving</a></li></ol></div></div></div>
 <footer>
   모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
   <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>
   · <a href="https://claire-mun.github.io/feed.xml">RSS</a>
 </footer>
-</div><script>
-document.querySelectorAll('.code').forEach(function(box){
-  var button=box.querySelector('.copy'),code=box.querySelector('code');
-  if(!button||!code)return;
-  button.addEventListener('click',function(){
-    navigator.clipboard.writeText(code.textContent).then(function(){
-      var was=button.textContent;button.textContent='복사됨';
-      setTimeout(function(){button.textContent=was;},1400);
-    });
-  });
-});
-</script></body></html>
+</div></body></html>

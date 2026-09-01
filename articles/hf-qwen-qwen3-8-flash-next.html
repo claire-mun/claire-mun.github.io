@@ -1,104 +1,357 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview</title>
-<meta name="description" content="Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want t">
-<meta property="og:title" content="Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview">
-<meta property="og:description" content="Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want t">
+<title>Qwen3.8-Flash-Next: Qwen4 아키텍처 프리뷰를 오픈 웨이트로 낸 image-text-to-text 모델</title>
+<meta name="description" content="Qwen 팀이 Qwen4의 기반이 될 아키텍처의 실험적 프리뷰를 Transformers 포맷 오픈 웨이트로 공개한 멀티모달 모델입니다. 하이브리드 어텐션과 희소 어텐션 계열 구조를 직접 뜯어보거나 자체 인프라에 올릴 계획이 있는 엔지니어에게 관련이 있습니다.">
+<meta property="og:title" content="Qwen3.8-Flash-Next: Qwen4 아키텍처 프리뷰를 오픈 웨이트로 낸 image-text-to-text 모델">
+<meta property="og:description" content="Qwen 팀이 Qwen4의 기반이 될 아키텍처의 실험적 프리뷰를 Transformers 포맷 오픈 웨이트로 공개한 멀티모달 모델입니다. 하이브리드 어텐션과 희소 어텐션 계열 구조를 직접 뜯어보거나 자체 인프라에 올릴 계획이 있는 엔지니어에게 관련이 있습니다.">
 <meta property="og:type" content="article">
-<link rel="alternate" type="application/rss+xml" title="Sourced Daily" href="https://claire-mun.github.io/feed.xml">
+<meta property="og:site_name" content="SOURCED">
+<link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<link rel="canonical" href="https://claire-mun.github.io/articles/hf-qwen-qwen3-8-flash-next.html"><meta property="og:url" content="https://claire-mun.github.io/articles/hf-qwen-qwen3-8-flash-next.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Qwen3.8-Flash-Next: Qwen4 아키텍처 프리뷰를 오픈 웨이트로 낸 image-text-to-text 모델","description":"Qwen 팀이 Qwen4의 기반이 될 아키텍처의 실험적 프리뷰를 Transformers 포맷 오픈 웨이트로 공개한 멀티모달 모델입니다. 하이브리드 어텐션과 희소 어텐션 계열 구조를 직접 뜯어보거나 자체 인프라에 올릴 계획이 있는 엔지니어에게 관련이 있습니다.","datePublished":"2026-09-01T15:48:42.261277+00:00","dateModified":"2026-09-01T15:48:42.261277+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/hf-qwen-qwen3-8-flash-next.html","mainEntityOfPage":"https://claire-mun.github.io/articles/hf-qwen-qwen3-8-flash-next.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"모델","citation":["https://huggingface.co/Qwen/Qwen3.8-Flash-Next","https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/config.json","https://huggingface.co/Qwen/Qwen3.8-Flash-Next#model-card"]}</script>
 <style>
 :root{
-  --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16191C; --muted:#565F66;
-  --faint:#8A9298; --rule:#E2E0DB; --accent:#9C4A1E; --sunk:#F3F1EC;
+  --paper:#EDF0F3; --surface:#FFFFFF; --ink:#0F1720; --muted:#4E5C69;
+  --faint:#7D909E; --rule:#D3DCE3; --measured:#06695F; --sunk:#F5F8F9;
+  --bar:#06695F1F; --shadow:0 1px 2px #0f172008;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
-    --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+    --paper:#0D1418; --surface:#121B21; --ink:#DFE7EA; --muted:#93A5B0;
+    --faint:#6B7F8C; --rule:#22323B; --measured:#4FC9BC; --sunk:#0F1A20;
+    --bar:#4FC9BC24; --shadow:none;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#111315; --surface:#181B1E; --ink:#E6E8E9; --muted:#98A0A6;
-  --faint:#6B7378; --rule:#2A2E32; --accent:#D98A56; --sunk:#15181A;
+  --paper:#0D1418; --surface:#121B21; --ink:#DFE7EA; --muted:#93A5B0;
+  --faint:#6B7F8C; --rule:#22323B; --measured:#4FC9BC; --sunk:#0F1A20;
+  --bar:#4FC9BC24; --shadow:none;
 }
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);
-  font:400 17px/1.72 Charter,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin:0 auto;padding:0 24px 96px}
-a{color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-header.site{padding:44px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:40px}
-header.site .name{font-size:21px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
-header.site p{margin:6px 0 0;color:var(--muted);font-size:15px}
-.eyebrow{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
-h1{font-size:34px;line-height:1.2;letter-spacing:-.018em;margin:12px 0 0;text-wrap:balance}
-.meta{margin-top:12px;color:var(--faint);font:400 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
-.lead{margin-top:26px;font-size:18.5px;color:var(--muted)}
-.item{margin-top:22px}
-figure{margin:30px 0 0}
-figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
-figcaption{margin-top:8px;font:400 12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
-h2.section{font-size:21px;line-height:1.3;letter-spacing:-.012em;margin:34px 0 0}
-.facts{margin-top:38px;padding:20px 22px;background:var(--sunk);border:1px solid var(--rule)}
-.facts h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
-.facts table{width:100%;border-collapse:collapse;font:400 14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
-.facts th{text-align:left;font-weight:400;color:var(--faint);padding:5px 14px 5px 0;
-  vertical-align:top;white-space:nowrap}
-.facts td{padding:5px 0;color:var(--ink);word-break:break-word}
-.facts .endpoint{margin:14px 0 0;font-size:12.5px;color:var(--faint)}
-.sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
-.sources h2{font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 12px}
-.sources ol{margin:0;padding-left:20px;font-size:15px;color:var(--muted)}
-.sources li{margin:8px 0}
-.index{list-style:none;margin:0;padding:0}
-.index li{padding:24px 0;border-bottom:1px solid var(--rule)}
-.index a{text-decoration:none;color:var(--ink)}
-.index h2{font-size:23px;line-height:1.28;margin:8px 0 0;letter-spacing:-.012em;text-wrap:balance}
-.index p{margin:9px 0 0;color:var(--muted);font-size:15.5px}
-.index a:hover h2{color:var(--accent)}
-.note{margin-top:34px;padding:16px 18px;background:var(--sunk);border-left:2px solid var(--accent);
-  font-size:14.5px;color:var(--muted)}
-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
-  font:400 13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--faint)}
-</style>
-</head><body><div class="wrap">
+  font:400 16.5px/1.85 "IBM Plex Sans KR","IBM Plex Sans",-apple-system,BlinkMacSystemFont,
+  "Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--measured);outline-offset:3px;border-radius:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-variant-numeric:tabular-nums}
+
+/* --- shell ------------------------------------------------------------- */
+.shell{max-width:1180px;margin:0 auto;padding:0 28px 88px}
+header.site{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:baseline;
+  padding:26px 0 18px;border-bottom:1px solid var(--rule);margin-bottom:44px}
+header.site .name{font-size:17px;font-weight:600;letter-spacing:.02em;text-decoration:none;
+  font-family:"IBM Plex Mono",ui-monospace,monospace}
+header.site .name b{color:var(--measured);font-weight:600}
+header.site nav{display:flex;gap:20px;margin-left:auto}
+header.site nav a{font-size:14px;color:var(--muted);text-decoration:none;padding-bottom:2px;
+  border-bottom:1px solid transparent}
+header.site nav a:hover,header.site nav a[aria-current]{color:var(--ink);border-bottom-color:var(--measured)}
+
+/* --- article ----------------------------------------------------------- */
+.piece{display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
+@media (min-width:1000px){
+  .piece{grid-template-columns:196px minmax(0,700px);gap:56px}
+}
+.col{min-width:0;max-width:700px}
+.eyebrow{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+.eyebrow:hover{color:var(--measured)}
+h1{font-size:33px;line-height:1.36;letter-spacing:-.02em;font-weight:600;margin:14px 0 0;
+  text-wrap:balance}
+.meta{margin-top:14px;color:var(--faint);font-size:13px}
+.meta b{color:var(--measured);font-weight:500}
+.lead{margin-top:24px;font-size:18px;line-height:1.8;color:var(--muted);
+  padding-left:16px;border-left:2px solid var(--measured)}
+h2.section{font-size:20.5px;line-height:1.5;font-weight:600;letter-spacing:-.012em;
+  margin:52px 0 0;scroll-margin-top:24px}
+h2.section .n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+  font-weight:500;color:var(--measured);display:block;margin-bottom:7px;letter-spacing:.1em}
+.item{margin:19px 0 0}
+
+/* --- table of contents ------------------------------------------------- */
+.toc{font-size:13.5px;line-height:1.6}
+@media (min-width:1000px){.toc{position:sticky;top:28px;align-self:start;max-height:88vh;overflow:auto}}
+.toc h2{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{counter-increment:toc;margin:0 0 11px;display:flex;gap:10px}
+.toc li::before{content:counter(toc,decimal-leading-zero);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--faint);
+  padding-top:3px}
+.toc a{color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--measured)}
+
+/* --- the measured panel (the one place the accent is spent) ------------- */
+.facts{margin-top:56px;background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;box-shadow:var(--shadow);overflow:hidden}
+.facts h2{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0;
+  padding:14px 20px;border-bottom:1px solid var(--rule);background:var(--sunk)}
+.facts table{width:100%;border-collapse:collapse;font-size:14px}
+.facts tr{border-bottom:1px solid var(--rule)}
+.facts tr:last-child{border-bottom:0}
+.facts th{text-align:left;font-weight:400;color:var(--muted);padding:9px 16px 9px 20px;
+  vertical-align:top;white-space:nowrap;width:1%}
+.facts td{padding:9px 20px 9px 0;color:var(--ink);position:relative}
+.facts td.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;
+  color:var(--measured);font-weight:500}
+/* A row that belongs to a comparable group carries its own share as a fill,
+   so the table is the chart and no second block is needed to show shape. */
+.facts tr.bar td.num::before{content:"";position:absolute;inset:2px auto 2px -4px;
+  width:var(--fill);background:var(--bar);border-radius:2px;z-index:0}
+.facts tr.bar td.num span{position:relative;z-index:1}
+.facts .endpoint{margin:0;padding:13px 20px;border-top:1px solid var(--rule);
+  background:var(--sunk);font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;line-height:1.7;color:var(--faint);word-break:break-all}
+.facts .endpoint a{color:var(--faint)}
+
+/* --- quoted source file ------------------------------------------------ */
+.code{margin:44px 0 0;border:1px solid var(--rule);border-radius:3px;overflow:hidden;
+  background:#0E1A20}
+.code .bar{display:flex;align-items:center;gap:14px;padding:10px 14px;
+  background:#13232B;border-bottom:1px solid #1E333D}
+.code .path{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  color:#8FA8B4;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.code .path:hover{color:#4FC9BC}
+.code .copy{margin-left:auto;flex:none;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.06em;color:#8FA8B4;background:transparent;
+  border:1px solid #24404C;border-radius:2px;padding:4px 10px;cursor:pointer}
+.code .copy:hover{color:#4FC9BC;border-color:#4FC9BC}
+.code pre{margin:0;padding:16px 18px;overflow-x:auto;
+  font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12.5px;line-height:1.75;color:#C7D6DD;tab-size:2}
+.code pre code{white-space:pre}
+
+/* --- sources ----------------------------------------------------------- */
+.sources{margin-top:52px;padding-top:22px;border-top:1px solid var(--rule)}
+.sources h2{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding-left:22px;font-size:14.5px;color:var(--muted)}
+.sources li{margin:9px 0}
+.sources a{color:var(--muted)}
+.sources a:hover{color:var(--measured)}
+
+/* --- index ------------------------------------------------------------- */
+.hero{max-width:640px;margin:0 0 56px}
+.hero h1{font-size:29px;margin:0;line-height:1.5}
+.hero p{margin:16px 0 0;color:var(--muted);font-size:16px}
+.group{margin:0 0 52px}
+.group>h2{display:flex;align-items:baseline;gap:12px;margin:0 0 4px;max-width:860px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.group>h2 a{text-decoration:none}
+.group>h2 .count{color:var(--measured)}
+.group>h2 .desc{margin-left:auto;letter-spacing:0;text-transform:none;font-size:13px;
+  color:var(--faint);font-weight:400;font-family:"IBM Plex Sans KR",-apple-system,sans-serif}
+@media (max-width:700px){.group>h2 .desc{display:none}}
+.index{list-style:none;margin:0;padding:0;max-width:860px}
+.index li{border-bottom:1px solid var(--rule)}
+.index a{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
+  padding:22px 0;text-decoration:none}
+@media (min-width:760px){
+  .index a{grid-template-columns:minmax(0,1fr) 112px;gap:6px 28px;align-items:baseline}
+}
+.index h3{margin:0;font-size:19px;line-height:1.55;font-weight:600;letter-spacing:-.012em;
+  text-wrap:balance}
+.index p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.7;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.index .when{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  color:var(--faint);white-space:nowrap}
+@media (min-width:760px){.index .when{grid-row:1;grid-column:2;text-align:right}}
+.index a:hover h3{color:var(--measured)}
+.empty{color:var(--muted);font-size:15px;padding:28px 0}
+.prose{max-width:700px}
+.prose h2.section:first-child{margin-top:0}
+
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:13px;line-height:1.9;color:var(--faint)}
+footer a{color:var(--faint)}
+footer a:hover{color:var(--measured)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+pre { line-height: 125%; }
+.code pre .c { color: #616E87; font-style: italic } /* Comment */
+.code pre .err { color: #BF616A } /* Error */
+.code pre .esc { color: #D8DEE9 } /* Escape */
+.code pre .g { color: #D8DEE9 } /* Generic */
+.code pre .k { color: #81A1C1; font-weight: bold } /* Keyword */
+.code pre .l { color: #D8DEE9 } /* Literal */
+.code pre .n { color: #D8DEE9 } /* Name */
+.code pre .o { color: #81A1C1; font-weight: bold } /* Operator */
+.code pre .x { color: #D8DEE9 } /* Other */
+.code pre .p { color: #ECEFF4 } /* Punctuation */
+.code pre .ch { color: #616E87; font-style: italic } /* Comment.Hashbang */
+.code pre .cm { color: #616E87; font-style: italic } /* Comment.Multiline */
+.code pre .cp { color: #5E81AC; font-style: italic } /* Comment.Preproc */
+.code pre .cpf { color: #616E87; font-style: italic } /* Comment.PreprocFile */
+.code pre .c1 { color: #616E87; font-style: italic } /* Comment.Single */
+.code pre .cs { color: #616E87; font-style: italic } /* Comment.Special */
+.code pre .gd { color: #BF616A } /* Generic.Deleted */
+.code pre .ge { color: #D8DEE9; font-style: italic } /* Generic.Emph */
+.code pre .ges { color: #D8DEE9; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.code pre .gr { color: #BF616A } /* Generic.Error */
+.code pre .gh { color: #88C0D0; font-weight: bold } /* Generic.Heading */
+.code pre .gi { color: #A3BE8C } /* Generic.Inserted */
+.code pre .go { color: #D8DEE9 } /* Generic.Output */
+.code pre .gp { color: #616E88; font-weight: bold } /* Generic.Prompt */
+.code pre .gs { color: #D8DEE9; font-weight: bold } /* Generic.Strong */
+.code pre .gu { color: #88C0D0; font-weight: bold } /* Generic.Subheading */
+.code pre .gt { color: #BF616A } /* Generic.Traceback */
+.code pre .kc { color: #81A1C1; font-weight: bold } /* Keyword.Constant */
+.code pre .kd { color: #81A1C1; font-weight: bold } /* Keyword.Declaration */
+.code pre .kn { color: #81A1C1; font-weight: bold } /* Keyword.Namespace */
+.code pre .kp { color: #81A1C1 } /* Keyword.Pseudo */
+.code pre .kr { color: #81A1C1; font-weight: bold } /* Keyword.Reserved */
+.code pre .kt { color: #81A1C1 } /* Keyword.Type */
+.code pre .ld { color: #D8DEE9 } /* Literal.Date */
+.code pre .m { color: #B48EAD } /* Literal.Number */
+.code pre .s { color: #A3BE8C } /* Literal.String */
+.code pre .na { color: #8FBCBB } /* Name.Attribute */
+.code pre .nb { color: #81A1C1 } /* Name.Builtin */
+.code pre .nc { color: #8FBCBB } /* Name.Class */
+.code pre .no { color: #8FBCBB } /* Name.Constant */
+.code pre .nd { color: #D08770 } /* Name.Decorator */
+.code pre .ni { color: #D08770 } /* Name.Entity */
+.code pre .ne { color: #BF616A } /* Name.Exception */
+.code pre .nf { color: #88C0D0 } /* Name.Function */
+.code pre .nl { color: #D8DEE9 } /* Name.Label */
+.code pre .nn { color: #8FBCBB } /* Name.Namespace */
+.code pre .nx { color: #D8DEE9 } /* Name.Other */
+.code pre .py { color: #D8DEE9 } /* Name.Property */
+.code pre .nt { color: #81A1C1 } /* Name.Tag */
+.code pre .nv { color: #D8DEE9 } /* Name.Variable */
+.code pre .ow { color: #81A1C1; font-weight: bold } /* Operator.Word */
+.code pre .pm { color: #ECEFF4 } /* Punctuation.Marker */
+.code pre .w { color: #D8DEE9 } /* Text.Whitespace */
+.code pre .mb { color: #B48EAD } /* Literal.Number.Bin */
+.code pre .mf { color: #B48EAD } /* Literal.Number.Float */
+.code pre .mh { color: #B48EAD } /* Literal.Number.Hex */
+.code pre .mi { color: #B48EAD } /* Literal.Number.Integer */
+.code pre .mo { color: #B48EAD } /* Literal.Number.Oct */
+.code pre .sa { color: #A3BE8C } /* Literal.String.Affix */
+.code pre .sb { color: #A3BE8C } /* Literal.String.Backtick */
+.code pre .sc { color: #A3BE8C } /* Literal.String.Char */
+.code pre .dl { color: #A3BE8C } /* Literal.String.Delimiter */
+.code pre .sd { color: #616E87 } /* Literal.String.Doc */
+.code pre .s2 { color: #A3BE8C } /* Literal.String.Double */
+.code pre .se { color: #EBCB8B } /* Literal.String.Escape */
+.code pre .sh { color: #A3BE8C } /* Literal.String.Heredoc */
+.code pre .si { color: #A3BE8C } /* Literal.String.Interpol */
+.code pre .sx { color: #A3BE8C } /* Literal.String.Other */
+.code pre .sr { color: #EBCB8B } /* Literal.String.Regex */
+.code pre .s1 { color: #A3BE8C } /* Literal.String.Single */
+.code pre .ss { color: #A3BE8C } /* Literal.String.Symbol */
+.code pre .bp { color: #81A1C1 } /* Name.Builtin.Pseudo */
+.code pre .fm { color: #88C0D0 } /* Name.Function.Magic */
+.code pre .vc { color: #D8DEE9 } /* Name.Variable.Class */
+.code pre .vg { color: #D8DEE9 } /* Name.Variable.Global */
+.code pre .vi { color: #D8DEE9 } /* Name.Variable.Instance */
+.code pre .vm { color: #D8DEE9 } /* Name.Variable.Magic */
+.code pre .il { color: #B48EAD } /* Literal.Number.Integer.Long */</style>
+</head><body><div class="shell">
 <header class="site">
-  <a class="name" href="https://claire-mun.github.io/">Sourced Daily</a>
-  <p>Four desks. Every claim linked to where it came from.</p>
+  <a class="name" href="https://claire-mun.github.io/">SOURCED<b>.</b></a>
+  <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html" aria-current="page">모델</a><a href="https://claire-mun.github.io/papers.html">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<span class="eyebrow">Explainer</span>
-<h1>Qwen3.8-Flash-Next: reading the config of a hybrid-attention multimodal preview</h1>
-<div class="meta">01 September 2026 · 3 sources</div>
-<p class="lead">Qwen3.8-Flash-Next is an open-weight image-text-to-text model published as a Transformers-format repository, built on an architecture Qwen describes as an experimental preview of what will underpin Qwen4. This is for engineers deciding whether to pull 131 weight shards onto a machine, and who want to know what the config file commits them to before they do.</p>
-<h2 class="section">What this model is</h2>
-<p class="item">The repository holds post-trained weights and configuration for a multimodal model: the pipeline task is image-text-to-text, and the config sets language_model_only to false with an image_token_id of 248056, so the checkpoint carries both a vision path and a text path in one artifact. The architecture class is Qwen4ExpForConditionalGeneration and the model_type string is qwen4_exp — the conditional-generation naming is the usual Transformers convention for a model that conditions text output on non-text input.</p>
-<p class="item">The model card frames this as an experimental preview of the architecture behind Qwen4 rather than a routine point release. Three changes are called out: Qwen Sparse Attention (QSA), which the card says operates at the micro-block level rather than selecting individual tokens, paired with Gated DeltaNet; Gated Residual, described as an element-wise data-dependent read gate plus a per-branch scalar write gate over widened residual streams; and N-gram Embedding, presented as a parameter-scaling axis that costs less compute.</p>
-<p class="item">The config backs those claims up in a way the prose does not. layer_types is an explicit per-layer list alternating linear_attention and full_attention, with full_attention_interval set to 4 — attention type is a property of each layer position, not a global setting. A separate block of indexer_* keys (indexer_budget 2048, indexer_n_heads 4, indexer_kv_heads 1, indexer_head_dim 128, indexer_compress_ratio 4) describes the sparse-attention selection machinery, and heads_per_ngram is 8 with hc_count 4 and hc_lowrank 320. hidden_size is 2560 and head_dim is 256.</p>
-<h2 class="section">Why it is trending now</h2>
-<p class="item">The repository has 4698 likes and 207941 downloads in the last 30 days, and was last modified on 2026-08-27T05:03:36.000Z. That download-to-like ratio is what you would expect from a model people are actually pulling and running, not only bookmarking.</p>
-<p class="item">The more likely driver is positioning. The card presents this as the first open-weight release under the architecture that will underpin Qwen4, which makes it the earliest place to run that architecture locally rather than through an API. Anyone building on Qwen and planning for the next generation has a reason to profile this now.</p>
-<h2 class="section">What the artifact actually contains (weights, config, licence)</h2>
-<p class="item">There are 144 files in the repository, of which 131 are weight shards. The remaining files are the usual config, tokenizer, and card material. A shard count that high tells you two practical things: a naive download pulls a large number of separate files, and any tooling you point at this needs to handle sharded safetensors properly rather than expecting a single weight file.</p>
-<p class="item">The declared dtype in text_config is bfloat16, so the shards are the bf16 post-trained weights, not a quantised variant. attention_bias is false and attention_dropout is 0.0. The bos_token_id and eos_token_id are both 248044, and the image_token_id of 248056 sits just above them — image placeholders live in the same vocabulary space as the special text tokens, which matters if you are hand-assembling token sequences instead of going through the processor.</p>
-<p class="item">The card&#x27;s YAML front matter declares library_name transformers, license other, license_name qwen-community-1.0, and license_link LICENSE. The Hub tags are transformers, safetensors, qwen4_exp, image-text-to-text, conversational, license:other, eval-results, endpoints_compatible, region:us.</p>
-<h2 class="section">How you would run or fine-tune it</h2>
-<p class="item">The card states the artifacts are compatible with Hugging Face Transformers, vLLM, SGLang, and TokenSpeed, and the endpoints_compatible tag means the repo is shaped for Hub inference endpoints. The conversational tag indicates a chat template is expected to be present, so the normal path is the processor plus chat-template flow for an image-text-to-text model rather than raw string prompting.</p>
-<p class="item">The first thing that will break is version skew. model_type is qwen4_exp and the architecture class is Qwen4ExpForConditionalGeneration; a Transformers install that predates registration of that model type will fail to resolve the config, and the same applies to vLLM and SGLang builds. Check the model type is supported by your installed version before troubleshooting anything else.</p>
-<p class="item">For fine-tuning, the structural facts to plan around are the 131 bf16 shards and the mixed layer_types list. Loading and resharding that many files is its own operational step, and any code that assumes a uniform attention implementation across layers — memory estimation, custom attention patching, layer-wise freezing schedules — needs to read layer_types rather than assume homogeneity. The indexer_* parameters are part of the sparse-attention path and are not knobs to tune casually during downstream training.</p>
-<h2 class="section">Limits and licence conditions to check before shipping it</h2>
-<p class="item">The licence is not a standard open-source one. It is declared as other with license_name qwen-community-1.0 and a license_link pointing at a LICENSE file in the repository. You have to read that file. A community licence typically carries use restrictions, attribution requirements, or usage thresholds, and none of that is visible from the Hub tag alone.</p>
-<p class="item">Second, do not carry the hosted product&#x27;s properties over to these weights. The card says Qwen3.8-Flash on Qwen Cloud is the official version based on Qwen3.8-Flash-Next, with more production features such as 1M context length by default and official built-in tools. Those are attributes of the managed service as described; the open-weight repository is the base for it, not the same configuration.</p>
-<p class="item">Third, take the card&#x27;s own word for the maturity level: it calls this an experimental preview of the architecture that will underpin Qwen4. Combined with a novel model_type, that means your runtime support is tracking a moving target, and kernel or implementation changes upstream are more likely here than with a settled architecture. Pin your versions.</p>
-<div class="facts"><h2>Measured</h2><table><tr><th>likes</th><td>4698</td></tr><tr><th>downloads in the last 30 days</th><td>207941</td></tr><tr><th>task</th><td>image-text-to-text</td></tr><tr><th>library</th><td>transformers</td></tr><tr><th>licence</th><td>other</td></tr><tr><th>last modified</th><td>2026-08-27T05:03:36.000Z</td></tr><tr><th>files in the repository</th><td>144</td></tr><tr><th>weight shards</th><td>131</td></tr><tr><th>architecture class</th><td>Qwen4ExpForConditionalGeneration</td></tr><tr><th>model type</th><td>qwen4_exp</td></tr><tr><th>declared tags</th><td>transformers, safetensors, qwen4_exp, image-text-to-text, conversational, license:other, eval-results, endpoints_compatible, region:us</td></tr></table><p class="endpoint">Read from <a href="https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next">https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next</a> on 01 September 2026.</p></div>
-<div class="sources"><h2>Sources</h2><ol><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/config.json">config.json</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next#model-card">Model card</a></li></ol></div>
+<div class="piece"><aside class="toc"><h2>목차</h2><ol><li><a href="#s1">이 모델이 무엇인가</a></li><li><a href="#s2">지금 트렌딩에 오른 이유</a></li><li><a href="#s3">실제로 무엇이 들어 있나 (가중치, config, 라이선스)</a></li><li><a href="#s4">어떻게 실행하거나 파인튜닝하는가</a></li><li><a href="#s5">도입 전에 확인해야 할 한계와 라이선스 조건</a></li></ol></aside><div class="col"><a class="eyebrow" href="https://claire-mun.github.io/models.html">모델</a>
+<h1>Qwen3.8-Flash-Next: Qwen4 아키텍처 프리뷰를 오픈 웨이트로 낸 image-text-to-text 모델</h1>
+<div class="meta">2026년 09월 01일 · 출처 <b>3</b>곳</div>
+<p class="lead">Qwen 팀이 Qwen4의 기반이 될 아키텍처의 실험적 프리뷰를 Transformers 포맷 오픈 웨이트로 공개한 멀티모달 모델입니다. 하이브리드 어텐션과 희소 어텐션 계열 구조를 직접 뜯어보거나 자체 인프라에 올릴 계획이 있는 엔지니어에게 관련이 있습니다.</p>
+<h2 class="section" id="s1"><span class="n">01</span>이 모델이 무엇인가</h2>
+<p class="item">Qwen3.8-Flash-Next는 pipeline_tag가 image-text-to-text인 멀티모달 모델입니다. config.json의 architectures는 Qwen4ExpForConditionalGeneration이고 model_type은 qwen4_exp로, 저장소 이름은 Qwen3.8 계열이지만 클래스 이름과 model_type은 이미 Qwen4 쪽을 가리킵니다. 모델 카드도 이 저장소를 &quot;Qwen4를 떠받칠 아키텍처의 실험적 프리뷰&quot;로 설명합니다. 즉 제품 릴리스라기보다 다음 세대 구조를 오픈 웨이트로 먼저 내놓은 성격이 강합니다.</p>
+<p class="item">text_config의 language_model_only가 false로 잡혀 있고 image_token_id가 248056으로 선언돼 있습니다. 텍스트 스택과 비전 입력이 하나의 conditional generation 클래스 안에서 묶여 있고, 이미지가 특수 토큰 자리로 들어가는 흔한 배치입니다.</p>
+<p class="item">구조에서 눈에 띄는 부분은 layer_types 배열입니다. linear_attention 레이어가 이어지다가 full_attention이 주기적으로 끼어드는 패턴이 반복되고, 그 주기는 full_attention_interval: 4로 명시돼 있습니다. 모델 카드가 말하는 Gated DeltaNet과 Qwen Sparse Attention(QSA)의 조합이 config 수준에서는 이 배열로 드러납니다. QSA는 개별 토큰이 아니라 마이크로 블록 단위로 동작한다고 설명돼 있으며, config에는 indexer_budget 2048, indexer_compress_ratio 4, indexer_n_heads 4, indexer_kv_heads 1, indexer_head_dim 128 같은 별도 인덱서 파라미터가 따로 잡혀 있습니다.</p>
+<h2 class="section" id="s2"><span class="n">02</span>지금 트렌딩에 오른 이유</h2>
+<p class="item">좋아요 4699, 최근 30일 다운로드 207941, 마지막 수정 2026-08-27입니다. 태그에는 eval-results와 endpoints_compatible이 붙어 있습니다.</p>
+<p class="item">관심이 몰리는 이유는 성능 수치보다 위치 때문입니다. 모델 카드는 Qwen3.8-Flash가 Qwen3.8-Flash-Next를 기반으로 한 공식 버전이며 Qwen Cloud에서 관리형으로 제공된다고 안내합니다. 다시 말해 이 저장소는 상용 서비스로 나가는 모델의 아키텍처를, 가중치까지 열어둔 형태로 미리 보여주는 쪽입니다. 관리형 API를 쓰지 않고 구조 자체를 검증하거나 자체 서빙 스택에 올리려는 쪽에서는 이 저장소가 유일한 접점입니다.</p>
+<p class="item">모델 카드가 내세우는 항목은 Hybrid Attention with QSA, Gated Residual, N-gram Embedding입니다. Gated Residual은 넓어진 residual 스트림을 element-wise 데이터 의존 read gate와 브랜치별 스칼라 write gate로 조절한다고 설명하며, config의 hc_count 4와 hc_lowrank 320이 그 계열의 설정으로 보입니다. N-gram Embedding 쪽은 heads_per_ngram 8이 대응됩니다.</p>
+<div class="code"><div class="bar"><a class="path" href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/config.json">config.json</a><button class="copy" type="button">복사</button></div><pre><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"architectures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"Qwen4ExpForConditionalGeneration"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"image_token_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">248056</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"language_model_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"model_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qwen4_exp"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"text_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"attention_bias"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"attention_dropout"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"bos_token_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">248044</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bfloat16"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"eos_token_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">248044</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"full_attention_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"hc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"hc_lowrank"</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"head_dim"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"heads_per_ngram"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"hidden_act"</span><span class="p">:</span><span class="w"> </span><span class="s2">"silu"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"hidden_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2560</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"indexer_budget"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"indexer_compress_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"indexer_head_dim"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"indexer_kv_heads"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"indexer_n_heads"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"initializer_range"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"layer_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"full_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"full_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"full_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"full_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"linear_attention"</span><span class="p">,</span>
+<span class="w">            </span><span class="err">"full_attent</span>
+</code></pre></div>
+<h2 class="section" id="s3"><span class="n">03</span>실제로 무엇이 들어 있나 (가중치, config, 라이선스)</h2>
+<p class="item">저장소 파일 144개 가운데 131개가 가중치 샤드입니다. 저장소의 대부분이 safetensors 샤드라는 뜻이고, 클론이나 캐시 다운로드를 계획할 때 이 샤드 개수 자체가 운영상의 제약이 됩니다. 파일 몇 개만 골라 받는 부분 다운로드는 사실상 의미가 없습니다.</p>
+<p class="item">text_config의 dtype은 bfloat16, hidden_size는 2560, head_dim은 256입니다. hidden_size에 비해 head_dim이 큰 편이라는 점, 그리고 attention_bias가 false, attention_dropout이 0.0, hidden_act가 silu, initializer_range가 0.02라는 점이 확인됩니다. bos_token_id와 eos_token_id가 모두 248044이고 image_token_id가 248056입니다. 토큰 ID가 이 범위에 있다는 것은 어휘 테이블이 상당히 크다는 신호이며, 임베딩 파라미터 비중을 가늠할 때 참고할 지점입니다.</p>
+<p class="item">공개된 config.json 발췌는 layer_types 배열 중간에서 잘려 있습니다. 총 레이어 수, MoE 관련 설정, 비전 타워 구성 같은 항목은 이 발췌만으로는 확정할 수 없으므로 실제 파일을 직접 확인해야 합니다.</p>
+<p class="item">라이선스는 other이며, 모델 카드 프런트매터에 license_name이 qwen-community-1.0, license_link가 LICENSE로 지정돼 있습니다. Apache나 MIT 같은 표준 라이선스가 아니라 별도 커뮤니티 라이선스 문서를 읽어야 하는 형태입니다.</p>
+<h2 class="section" id="s4"><span class="n">04</span>어떻게 실행하거나 파인튜닝하는가</h2>
+<p class="item">라이브러리는 transformers이고, 모델 카드는 이 아티팩트가 Hugging Face Transformers, vLLM, SGLang, TokenSpeed 등과 호환된다고 밝히고 있습니다. 카드에 따르면 이 저장소는 post-trained 모델의 가중치와 설정 파일을 Transformers 포맷으로 담고 있습니다.</p>
+<p class="item">실무에서 걸리는 지점은 model_type이 qwen4_exp라는 것입니다. 표준 아키텍처가 아니라 새 구조이므로, 설치된 transformers(또는 vLLM, SGLang) 버전이 qwen4_exp와 Qwen4ExpForConditionalGeneration을 알고 있어야 로드가 됩니다. linear_attention 레이어와 별도 indexer 경로는 커널 지원 여부에 따라 실행 가능성이 갈리는 부분이라, 로딩 전에 런타임 버전부터 맞추는 편이 순서상 맞습니다.</p>
+<p class="item">가중치가 131개 샤드로 나뉘어 있으므로 단일 GPU에 통째로 올리는 시나리오는 기본 가정이 아닙니다. 샤드 단위 로딩과 디바이스 분산을 전제로 계획을 잡아야 합니다. dtype이 bfloat16이라는 점도 하드웨어 선택에 그대로 반영됩니다.</p>
+<p class="item">파인튜닝 관점에서는 태그에 conversational이 포함돼 있고 태스크가 image-text-to-text이므로, 이미지와 텍스트가 섞인 대화 포맷이 입력 형태가 됩니다. 다만 이 저장소가 아키텍처 프리뷰로 소개된다는 점을 감안하면, 학습 레시피나 어댑터 지원이 성숙한 계열만큼 갖춰져 있으리라 기대하기는 어렵습니다.</p>
+<h2 class="section" id="s5"><span class="n">05</span>도입 전에 확인해야 할 한계와 라이선스 조건</h2>
+<p class="item">라이선스가 other로 분류돼 있고 실제 조건은 qwen-community-1.0 문서에 있습니다. 상업적 사용 범위, 재배포, 파생 모델 표기 같은 조항은 저장소의 LICENSE 파일을 직접 읽어 확인해야 하며, 오픈 웨이트라는 사실만으로 사용 조건을 추정하면 안 됩니다.</p>
+<p class="item">모델 카드가 experimental preview라고 명시한 점도 그대로 받아들이는 편이 좋습니다. 아키텍처 변경 폭이 크고 model_type이 새로 정의된 만큼, 런타임 지원과 인터페이스가 이후 버전에서 바뀔 여지가 있습니다.</p>
+<p class="item">또 하나 구분해야 할 것은 컨텍스트 길이입니다. 모델 카드에서 1M 컨텍스트와 공식 내장 도구는 Qwen Cloud의 Qwen3.8-Flash가 갖는 프로덕션 기능으로 설명돼 있습니다. 이 오픈 웨이트 저장소에서 같은 조건이 기본으로 성립한다고 가정하지 말고, 실제 config에서 확인해야 합니다.</p>
+<p class="item">마지막으로 태그에 region:us가 있고, 성능 수치는 eval-results 태그로만 표시돼 있을 뿐 이 사실 목록에는 벤치마크 결과가 포함돼 있지 않습니다. 도입 판단에 필요한 품질 근거는 별도로 확보해야 합니다.</p>
+<div class="facts"><h2>측정값</h2><table><tr><th>좋아요</th><td class="num"><span>4699</span></td></tr><tr><th>최근 30일 다운로드</th><td class="num"><span>207941</span></td></tr><tr><th>태스크</th><td>image-text-to-text</td></tr><tr><th>라이브러리</th><td>transformers</td></tr><tr><th>라이선스</th><td>other</td></tr><tr><th>마지막 수정</th><td>2026-08-27T05:03:36.000Z</td></tr><tr><th>저장소 파일 수</th><td class="num"><span>144</span></td></tr><tr><th>가중치 샤드</th><td class="num"><span>131</span></td></tr><tr><th>아키텍처 클래스</th><td>Qwen4ExpForConditionalGeneration</td></tr><tr><th>model_type</th><td>qwen4_exp</td></tr><tr><th>선언된 태그</th><td>transformers, safetensors, qwen4_exp, image-text-to-text, conversational, license:other, eval-results, endpoints_compatible, region:us</td></tr></table><p class="endpoint">2026-09-01 측정 · <a href="https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next">https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next</a></p></div>
+<div class="sources"><h2>출처</h2><ol><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/config.json">config.json</a></li><li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next#model-card">Model card</a></li></ol></div></div></div>
 <footer>
-  Generated automatically. Every claim links to its source; connective prose is
-  AI-assisted and no figure appears that its sources do not support.<br>
-  <a href="https://claire-mun.github.io/feed.xml">RSS</a>
+  모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
+  <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>
+  · <a href="https://claire-mun.github.io/feed.xml">RSS</a>
 </footer>
-</div></body></html>
+</div><script>
+document.querySelectorAll('.code').forEach(function(box){
+  var button=box.querySelector('.copy'),code=box.querySelector('code');
+  if(!button||!code)return;
+  button.addEventListener('click',function(){
+    navigator.clipboard.writeText(code.textContent).then(function(){
+      var was=button.textContent;button.textContent='복사됨';
+      setTimeout(function(){button.textContent=was;},1400);
+    });
+  });
+});
+</script></body></html>
