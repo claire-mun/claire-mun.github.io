@@ -2,17 +2,17 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>논문 · SOURCED</title>
-<meta name="description" content="arXiv 기록에서 주장과 검증을 분리합니다">
-<meta property="og:title" content="논문 · SOURCED">
-<meta property="og:description" content="arXiv 기록에서 주장과 검증을 분리합니다">
+<title>가중치 샤드가 저장소 거의 전부를 차지한 LTX-2.5의 구성</title>
+<meta name="description" content="저장소 파일 17개 중 14개가 가중치 샤드입니다. 코드도 설정 묶음도 아닌, 사실상 가중치만 올려둔 배포 형태입니다.">
+<meta property="og:title" content="가중치 샤드가 저장소 거의 전부를 차지한 LTX-2.5의 구성">
+<meta property="og:description" content="저장소 파일 17개 중 14개가 가중치 샤드입니다. 코드도 설정 묶음도 아닌, 사실상 가중치만 올려둔 배포 형태입니다.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SOURCED">
 <link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet"
  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="canonical" href="https://claire-mun.github.io/papers.html"><meta property="og:url" content="https://claire-mun.github.io/papers.html">
+<link rel="canonical" href="https://claire-mun.github.io/articles/hf-lightricks-ltx-2-5.html"><meta property="og:url" content="https://claire-mun.github.io/articles/hf-lightricks-ltx-2-5.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"가중치 샤드가 저장소 거의 전부를 차지한 LTX-2.5의 구성","description":"저장소 파일 17개 중 14개가 가중치 샤드입니다. 코드도 설정 묶음도 아닌, 사실상 가중치만 올려둔 배포 형태입니다.","datePublished":"2026-09-04T07:12:01.671498+00:00","dateModified":"2026-09-04T07:12:01.671498+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/hf-lightricks-ltx-2-5.html","mainEntityOfPage":"https://claire-mun.github.io/articles/hf-lightricks-ltx-2-5.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"모델","citation":["https://huggingface.co/Lightricks/LTX-2.5","https://huggingface.co/Lightricks/LTX-2.5#model-card"]}</script>
 <style>
 :root{
   --paper:#FCFAF6; --raise:#FFFFFF; --ink:#17140F; --muted:#665F52;
@@ -286,9 +286,31 @@ pre { line-height: 125%; }
 </head><body><div class="shell">
 <header class="site">
   <a class="name" href="https://claire-mun.github.io/">SOURCED</a>
-  <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html" aria-current="page">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
+  <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html" aria-current="page">모델</a><a href="https://claire-mun.github.io/papers.html">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<div class="hero"><h1>논문</h1><p>arXiv 기록에서 주장과 검증을 분리합니다</p></div><ul class="index"><li><a href="https://claire-mun.github.io/articles/arxiv-2609-01507.html"><h3>0.504와 0.184를 가른 것은 압축률이 아니라 표현 형식</h3><p class="said">LongMemEval에서 <b class="fig">7.70</b>배 압축한 continuous memory token이 <b class="fig">0.504</b>로 무압축 근거의 <b class="fig">0.490</b>을 넘는데, 같은 내용을 텍스트 요약으로 옮기면 <b class="fig">0.184</b>로 떨어집니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/arxiv-2609-03796.html"><h3>220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳</h3><p class="said">초록이 밝힌 생성 파이프라인은 <b class="fig">220</b>M 샘플 규모인데 그중 실제 이미지로 적힌 수는 <b class="fig">98</b>이고, 처음부터 학습하는 것은 <b class="fig">6</b>B DiT뿐이며 이해 모듈은 LLaDA<b class="fig">2.0</b>-Mini 위에서 동결된 채로 붙습니다.</p></a></li></ul>
+<div class="piece"><div class="col"><a class="kicker" href="https://claire-mun.github.io/models.html">모델</a>
+<h1>가중치 샤드가 저장소 거의 전부를 차지한 LTX-2.5의 구성</h1>
+<div class="meta">2026년 09월 04일 · 출처 2곳</div>
+<div class="readout"><p>저장소 파일이 <b class="fig">17</b>개인데 그중 <b class="fig">14</b>개가 가중치 샤드이고, pipeline_tag는 image-to-video 하나지만 선언된 태그에는 text-to-audio, audio-to-audio, video-to-audio, text-to-audio-video까지 들어 있습니다.</p><div class="bars"><div class="strip"><i style="width:82.35%;--o:1.00"></i></div><dl><div class="" style="--o:1.00"><dt>가중치 샤드</dt><dd>14</dd></div><div class="other" style="--o:0.78"><dt>기타</dt><dd>3</dd></div></dl></div></div>
+<h2 class="section" id="s1">이름이 감춘 오디오</h2>
+<p class="item">LTX-2.5는 Lightricks가 올린 영상 생성 모델입니다. pipeline_tag는 image-to-video 하나로 고정돼 있고, Hub의 태스크 분류도 image-to-video로 잡힙니다. 이름과 분류만 보면 이미지 한 장을 넣어 영상을 뽑는 모델로 읽힙니다.</p>
+<p class="item">선언된 태그는 그보다 넓습니다. text-to-video, video-to-video, image-text-to-video 같은 영상 계열 외에 audio-to-video, text-to-audio, video-to-audio, audio-to-audio, text-to-audio-video가 함께 붙어 있습니다. 카드 헤더도 Video, Audio &amp; World Simulation을 내걸고 있습니다. 즉 오디오는 부가 기능이 아니라 선언 층위에서 영상과 같은 자리에 놓여 있는데, 태스크 분류 한 칸에는 그게 드러나지 않습니다.</p>
+<p class="item">frontmatter의 language 목록도 en, de, es, fr, ja, ko, zh, it, pt로 여러 언어를 걸고 있습니다. 영상 모델 카드에서 language 필드가 이렇게 채워져 있다는 건 텍스트 조건과 오디오 쪽을 함께 겨냥한다는 신호로 읽힙니다.</p>
+<h2 class="section" id="s2">가중치만 있는 저장소</h2>
+<p class="item">저장소 파일 수는 17개, 그중 가중치 샤드가 14개입니다. 라이브러리는 diffusion-single-file로 잡혀 있습니다. 파이썬 패키지나 예제 디렉터리가 붙은 저장소가 아니라, 실행 코드는 바깥에 두고 여기에는 가중치와 카드 정도만 올려둔 배치입니다.</p>
+<p class="item">샤드 개별 용량이나 저장소 총 용량은 주어진 사실에 없습니다. 샤드가 14개라는 사실만으로 총량을 짐작해 적는 건 근거 없는 숫자가 되므로, 실제 디스크 요구량은 파일 목록을 직접 확인해야 합니다.</p>
+<p class="item">최근 30일 다운로드는 1293463이고 좋아요는 2709입니다. 마지막 수정은 2026-09-01T06:29:03.000Z입니다.</p>
+<h2 class="section" id="s3">설정 대신 배포 형식</h2>
+<p class="item">발췌에는 config.json 본문이 들어 있지 않습니다. 따라서 레이어 수나 차원 같은 아키텍처 수치를 여기서 말할 근거는 없습니다.</p>
+<p class="item">대신 배포 형식 자체가 하나의 선택입니다. diffusion-single-file은 diffusers식 서브폴더 분할 구조가 아니라 단일 파일 계열 로더를 전제로 하는 표기이고, 그 위에서 가중치를 14개 샤드로 쪼개 올렸습니다. 로딩 경로가 프레임워크 규약이 아니라 파일 규약에 묶여 있다는 뜻입니다. 참조 논문은 arxiv 2601.03233으로 적혀 있습니다.</p>
+<h2 class="section" id="s4">실행 경로는 바깥에</h2>
+<p class="item">카드는 self-host on your infrastructure를 전면에 내걸고 Homepage(ltx.io)와 docs.ltx.io로 링크를 겁니다. 코드는 GitHub의 Lightricks/LTX-2 쪽에 있고, 라이선스 파일도 그 저장소를 가리킵니다. 태그에 comfyui가 들어 있어 ComfyUI 계열 워크플로가 상정된 경로 중 하나로 보입니다.</p>
+<p class="item">먼저 붙어보려면 데모로 app.ltx.studio의 ltx-2-playground/i2v가 제시돼 있습니다. 가중치 내려받기 자체가 게이트 뒤에 있다는 점은 아래에서 이어집니다.</p>
+<h2 class="section" id="s5">게이트와 마케팅 동의</h2>
+<p class="item">license는 other이고, license_name은 ltx-2.x-community-license-agreement입니다. 표준 OSI 라이선스가 아니므로 사내 도입 전에 원문(LICENSE-2_x)을 직접 읽어야 합니다.</p>
+<p class="item">확인해야 할 조건이 하나 더 있습니다. 접근이 gated이고, 동의 문구가 Privacy Policy 확인에 더해 targeted and personalized advertisements를 포함한 offers and updates 수신 동의까지 묶고 있습니다. Agree and Access 버튼을 누르는 행위가 마케팅 수신 동의를 겸합니다. 언제든 수신 거부할 수 있다고 적혀 있긴 하지만, 회사 계정으로 받는 경우라면 이 동의 항목을 짚고 넘어가는 편이 낫습니다.</p>
+<div class="facts"><h2>측정값</h2><table><tr><th>좋아요</th><td class="num"><span>2709</span></td></tr><tr><th>최근 30일 다운로드</th><td class="num"><span>1293463</span></td></tr><tr><th>태스크</th><td>image-to-video</td></tr><tr><th>라이브러리</th><td>diffusion-single-file</td></tr><tr><th>라이선스</th><td>other</td></tr><tr><th>마지막 수정</th><td>2026-09-01T06:29:03.000Z</td></tr><tr><th>저장소 파일 수</th><td class="num"><span>17</span></td></tr><tr><th>가중치 샤드</th><td class="num"><span>14</span></td></tr><tr><th>선언된 태그</th><td>diffusion-single-file, image-to-video, text-to-video, video-to-video, image-text-to-video, audio-to-video, text-to-audio, video-to-audio, audio-to-audio, text-to-audio-video</td></tr></table><p class="endpoint">2026-09-04 측정 · <a href="https://huggingface.co/api/models/Lightricks/LTX-2.5">https://huggingface.co/api/models/Lightricks/LTX-2.5</a></p></div>
+<div class="sources"><h2>출처</h2><ol><li><a href="https://huggingface.co/Lightricks/LTX-2.5">Lightricks/LTX-2.5</a></li><li><a href="https://huggingface.co/Lightricks/LTX-2.5#model-card">Model card</a></li></ol></div></div><aside class="toc"><h2>이 글의 순서</h2><ol><li><a href="#s1">이름이 감춘 오디오</a></li><li><a href="#s2">가중치만 있는 저장소</a></li><li><a href="#s3">설정 대신 배포 형식</a></li><li><a href="#s4">실행 경로는 바깥에</a></li><li><a href="#s5">게이트와 마케팅 동의</a></li></ol></aside></div>
 <footer>
   모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
   <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>

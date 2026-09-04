@@ -2,17 +2,17 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>논문 · SOURCED</title>
-<meta name="description" content="arXiv 기록에서 주장과 검증을 분리합니다">
-<meta property="og:title" content="논문 · SOURCED">
-<meta property="og:description" content="arXiv 기록에서 주장과 검증을 분리합니다">
+<title>220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳</title>
+<meta name="description" content="220M 샘플 파이프라인에서 실제 이미지로 적힌 수가 98이라는 표기가, 이 모델이 무엇을 학습하고 무엇을 그대로 가져다 쓰는지를 그대로 드러냅니다. 학습 부담은 생성기 쪽에 몰려 있고 이해 쪽은 동결돼 있습니다.">
+<meta property="og:title" content="220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳">
+<meta property="og:description" content="220M 샘플 파이프라인에서 실제 이미지로 적힌 수가 98이라는 표기가, 이 모델이 무엇을 학습하고 무엇을 그대로 가져다 쓰는지를 그대로 드러냅니다. 학습 부담은 생성기 쪽에 몰려 있고 이해 쪽은 동결돼 있습니다.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SOURCED">
 <link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet"
  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="canonical" href="https://claire-mun.github.io/papers.html"><meta property="og:url" content="https://claire-mun.github.io/papers.html">
+<link rel="canonical" href="https://claire-mun.github.io/articles/arxiv-2609-03796.html"><meta property="og:url" content="https://claire-mun.github.io/articles/arxiv-2609-03796.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳","description":"220M 샘플 파이프라인에서 실제 이미지로 적힌 수가 98이라는 표기가, 이 모델이 무엇을 학습하고 무엇을 그대로 가져다 쓰는지를 그대로 드러냅니다. 학습 부담은 생성기 쪽에 몰려 있고 이해 쪽은 동결돼 있습니다.","datePublished":"2026-09-04T07:19:31.505226+00:00","dateModified":"2026-09-04T07:19:31.505226+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/arxiv-2609-03796.html","mainEntityOfPage":"https://claire-mun.github.io/articles/arxiv-2609-03796.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"논문","citation":["https://arxiv.org/abs/2609.03796","https://arxiv.org/abs/2609.03796"]}</script>
 <style>
 :root{
   --paper:#FCFAF6; --raise:#FFFFFF; --ink:#17140F; --muted:#665F52;
@@ -288,7 +288,30 @@ pre { line-height: 125%; }
   <a class="name" href="https://claire-mun.github.io/">SOURCED</a>
   <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html" aria-current="page">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<div class="hero"><h1>논문</h1><p>arXiv 기록에서 주장과 검증을 분리합니다</p></div><ul class="index"><li><a href="https://claire-mun.github.io/articles/arxiv-2609-01507.html"><h3>0.504와 0.184를 가른 것은 압축률이 아니라 표현 형식</h3><p class="said">LongMemEval에서 <b class="fig">7.70</b>배 압축한 continuous memory token이 <b class="fig">0.504</b>로 무압축 근거의 <b class="fig">0.490</b>을 넘는데, 같은 내용을 텍스트 요약으로 옮기면 <b class="fig">0.184</b>로 떨어집니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/arxiv-2609-03796.html"><h3>220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳</h3><p class="said">초록이 밝힌 생성 파이프라인은 <b class="fig">220</b>M 샘플 규모인데 그중 실제 이미지로 적힌 수는 <b class="fig">98</b>이고, 처음부터 학습하는 것은 <b class="fig">6</b>B DiT뿐이며 이해 모듈은 LLaDA<b class="fig">2.0</b>-Mini 위에서 동결된 채로 붙습니다.</p></a></li></ul>
+<div class="piece"><div class="col"><a class="kicker" href="https://claire-mun.github.io/papers.html">논문</a>
+<h1>220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳</h1>
+<div class="meta">2026년 09월 04일 · 출처 2곳</div>
+<div class="readout"><p>초록이 밝힌 생성 파이프라인은 <b class="fig">220</b>M 샘플 규모인데 그중 실제 이미지로 적힌 수는 <b class="fig">98</b>이고, 처음부터 학습하는 것은 <b class="fig">6</b>B DiT뿐이며 이해 모듈은 LLaDA<b class="fig">2.0</b>-Mini 위에서 동결된 채로 붙습니다.</p></div>
+<h2 class="section" id="s1">공개 레시피로 낸 점수</h2>
+<p class="item">논문이 내세우는 것은 하나입니다. 완전히 공개된 학습 레시피만으로 만든 통합 모델이 Qwen-Image-Bench에서 English 트랙 53.53, Chinese 트랙 53.38의 overall score를 기록했고, 두 트랙 모두에서 오픈소스 모델 가운데 최고라는 주장입니다.</p>
+<p class="item">주장의 무게는 점수 자체보다 그 앞에 붙은 조건에 있습니다. model weights, training code, detailed recipes를 함께 공개한다고 밝혔기 때문에, 점수는 결과물이 아니라 재현 가능하다고 내건 절차의 산출물로 제시됩니다. 초록에는 비교 대상 모델의 수치가 적혀 있지 않습니다.</p>
+<h2 class="section" id="s2">쌍 데이터를 미룬 순서</h2>
+<p class="item">문제 설정은 학습 순서입니다. 처음부터 paired image-text 데이터에 크게 의존하는 대신, image-only pre-training과 mid-training으로 시각 생성 prior를 먼저 쌓는다는 것이 초록의 표현입니다.</p>
+<p class="item">여기서 앞서 말한 숫자가 의미를 갖습니다. 생성 파이프라인은 220M 샘플로 구성되고, 그중 real images에 해당하는 수로 적힌 값은 98입니다. 부피의 대부분이 실제 이미지가 아닌 쪽에 있다는 뜻이며, 데이터 확보 비용을 어디로 옮겼는지가 이 배치에 드러납니다.</p>
+<h2 class="section" id="s3">동결과 파라미터 없는 정규화</h2>
+<p class="item">구조에서 결정적인 부분은 두 축이 비대칭이라는 점입니다. 6B DiT는 from scratch로 학습하지만, vision-language understanding module은 LLaDA2.0-Mini diffusion language model backbone 위에 세워진 채 frozen 상태로 결합됩니다. 통합 모델이라고 부르지만 기울기가 흐르는 범위는 한쪽입니다.</p>
+<p class="item">최적화 쪽에서는 DiT 전반에 parameter-free RMSNorm을 쓰고 optimizer로 Muon을 씁니다. 정규화에서 학습 파라미터를 걷어내고 optimizer를 바꾼 조합이 효율과 확장성의 근거로 제시됩니다.</p>
+<p class="item">추론 단계는 별도 산출물로 분리됩니다. LLaDA-Image를 distill해 LLaDA-Image-Turbo를 만들고, 2-4 sampling steps로 추론합니다.</p>
+<h2 class="section" id="s4">확인된 것과 그렇지 않은 것</h2>
+<p class="item">수치로 확인된 범위는 좁습니다. Qwen-Image-Bench의 English와 Chinese 두 트랙 overall score, 즉 53.53과 53.38이 초록에 제시된 전부입니다.</p>
+<p class="item">photorealistic한 이미지를 만들고 fine-grained editing instructions를 정확히 따른다는 서술은 점수 없이 문장으로만 나옵니다. Turbo의 2-4 sampling steps도 속도 조건으로 적혀 있을 뿐, 그 조건에서의 벤치마크 점수는 초록에 없습니다.</p>
+<p class="item">문서 자체의 상태도 범위에 들어갑니다. 저자 30명, 1차 분류 cs.CV, 전체 분류는 cs.CV와 cs.AI이고, 2026-09-03에 공개된 v1이 최종 수정본입니다. 수정 이력이 아직 없는 시점의 판본입니다.</p>
+<h2 class="section" id="s5">먼저 걸리는 조건</h2>
+<p class="item">가장 먼저 걸리는 것은 규모입니다. 6B DiT를 from scratch로 학습하는 경로가 레시피의 전제이고, 공개되는 것은 weights와 training code와 recipes입니다. 가중치를 받아 쓰는 것과 레시피를 재현하는 것은 필요한 자원이 다릅니다.</p>
+<p class="item">데이터 쪽은 그다음입니다. 220M 샘플 파이프라인에서 real images 수가 98로 적힌 표기는 초록의 문장 그대로이며, 그 구성을 어떻게 채웠는지는 본문의 recipe를 봐야 판단할 수 있습니다.</p>
+<p class="item">마지막은 조합의 이식성입니다. parameter-free RMSNorm과 Muon, 그리고 frozen understanding module이라는 세 선택이 함께 묶여 있어서, 기존 학습 스택에 하나만 떼어 붙였을 때 같은 결과가 나온다는 근거는 초록에 없습니다.</p>
+<div class="facts"><h2>측정값</h2><table><tr><th>저자 수</th><td class="num"><span>30</span></td></tr><tr><th>저자</th><td>Chuyan Chen, Haoxing Chen, Kun Chen, Zhenglin Cheng, Long Cui, Ruishan Fang, Zhangxuan Gu, Zhicheng Huang 외</td></tr><tr><th>1차 분류</th><td>cs.CV</td></tr><tr><th>전체 분류</th><td>cs.CV, cs.AI</td></tr><tr><th>최초 공개</th><td>2026-09-03</td></tr><tr><th>최종 수정</th><td>2026-09-03</td></tr><tr><th>버전</th><td>v1</td></tr></table><p class="endpoint">2026-09-04 측정 · <a href="https://export.arxiv.org/api/query">https://export.arxiv.org/api/query</a></p></div>
+<div class="sources"><h2>출처</h2><ol><li><a href="https://arxiv.org/abs/2609.03796">2609.03796</a></li><li><a href="https://arxiv.org/abs/2609.03796">초록 — LLaDA-Image: Building Strong Image Generators with Fully Open Training Recipes</a></li></ol></div></div><aside class="toc"><h2>이 글의 순서</h2><ol><li><a href="#s1">공개 레시피로 낸 점수</a></li><li><a href="#s2">쌍 데이터를 미룬 순서</a></li><li><a href="#s3">동결과 파라미터 없는 정규화</a></li><li><a href="#s4">확인된 것과 그렇지 않은 것</a></li><li><a href="#s5">먼저 걸리는 조건</a></li></ol></aside></div>
 <footer>
   모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
   <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>

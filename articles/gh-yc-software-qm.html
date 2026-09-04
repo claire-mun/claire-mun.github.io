@@ -2,17 +2,17 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>논문 · SOURCED</title>
-<meta name="description" content="arXiv 기록에서 주장과 검증을 분리합니다">
-<meta property="og:title" content="논문 · SOURCED">
-<meta property="og:description" content="arXiv 기록에서 주장과 검증을 분리합니다">
+<title>qm에서 가장 큰 디렉터리는 src가 아니라 test입니다</title>
+<meta name="description" content="test/ 470개가 src/ 404개를 앞서고, plugins/가 249개로 그 뒤를 바로 따릅니다. 저장소 설명은 &quot;Multiplayer agent harness for work&quot; 한 줄이지만, 파일 분포는 라이브러리가 아니라 배포해서 운영하는 제품의 모양입니다.">
+<meta property="og:title" content="qm에서 가장 큰 디렉터리는 src가 아니라 test입니다">
+<meta property="og:description" content="test/ 470개가 src/ 404개를 앞서고, plugins/가 249개로 그 뒤를 바로 따릅니다. 저장소 설명은 &quot;Multiplayer agent harness for work&quot; 한 줄이지만, 파일 분포는 라이브러리가 아니라 배포해서 운영하는 제품의 모양입니다.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SOURCED">
 <link rel="alternate" type="application/rss+xml" title="SOURCED" href="https://claire-mun.github.io/feed.xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet"
  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="canonical" href="https://claire-mun.github.io/papers.html"><meta property="og:url" content="https://claire-mun.github.io/papers.html">
+<link rel="canonical" href="https://claire-mun.github.io/articles/gh-yc-software-qm.html"><meta property="og:url" content="https://claire-mun.github.io/articles/gh-yc-software-qm.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"qm에서 가장 큰 디렉터리는 src가 아니라 test입니다","description":"test/ 470개가 src/ 404개를 앞서고, plugins/가 249개로 그 뒤를 바로 따릅니다. 저장소 설명은 \"Multiplayer agent harness for work\" 한 줄이지만, 파일 분포는 라이브러리가 아니라 배포해서 운영하는 제품의 모양입니다.","datePublished":"2026-09-04T07:10:16.495929+00:00","dateModified":"2026-09-04T07:10:16.495929+00:00","inLanguage":"ko","url":"https://claire-mun.github.io/articles/gh-yc-software-qm.html","mainEntityOfPage":"https://claire-mun.github.io/articles/gh-yc-software-qm.html","isPartOf":{"@type":"Blog","name":"SOURCED","url":"https://claire-mun.github.io/"},"publisher":{"@type":"Organization","name":"SOURCED"},"articleSection":"저장소","citation":["https://github.com/yc-software/qm","https://github.com/yc-software/qm","https://github.com/yc-software/qm#readme","https://github.com/yc-software/qm/blob/HEAD/.claude/skills/dev-instance/SKILL.md"]}</script>
 <style>
 :root{
   --paper:#FCFAF6; --raise:#FFFFFF; --ink:#17140F; --muted:#665F52;
@@ -286,12 +286,77 @@ pre { line-height: 125%; }
 </head><body><div class="shell">
 <header class="site">
   <a class="name" href="https://claire-mun.github.io/">SOURCED</a>
-  <nav><a href="https://claire-mun.github.io/repos.html">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html" aria-current="page">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
+  <nav><a href="https://claire-mun.github.io/repos.html" aria-current="page">저장소</a><a href="https://claire-mun.github.io/models.html">모델</a><a href="https://claire-mun.github.io/papers.html">논문</a><a href="https://claire-mun.github.io/briefs.html">브리핑</a></nav>
 </header>
-<div class="hero"><h1>논문</h1><p>arXiv 기록에서 주장과 검증을 분리합니다</p></div><ul class="index"><li><a href="https://claire-mun.github.io/articles/arxiv-2609-01507.html"><h3>0.504와 0.184를 가른 것은 압축률이 아니라 표현 형식</h3><p class="said">LongMemEval에서 <b class="fig">7.70</b>배 압축한 continuous memory token이 <b class="fig">0.504</b>로 무압축 근거의 <b class="fig">0.490</b>을 넘는데, 같은 내용을 텍스트 요약으로 옮기면 <b class="fig">0.184</b>로 떨어집니다.</p></a></li><li><a href="https://claire-mun.github.io/articles/arxiv-2609-03796.html"><h3>220M 샘플 중 실제 이미지 98, LLaDA-Image가 부피를 실어둔 곳</h3><p class="said">초록이 밝힌 생성 파이프라인은 <b class="fig">220</b>M 샘플 규모인데 그중 실제 이미지로 적힌 수는 <b class="fig">98</b>이고, 처음부터 학습하는 것은 <b class="fig">6</b>B DiT뿐이며 이해 모듈은 LLaDA<b class="fig">2.0</b>-Mini 위에서 동결된 채로 붙습니다.</p></a></li></ul>
+<div class="piece"><div class="col"><a class="kicker" href="https://claire-mun.github.io/repos.html">저장소</a>
+<h1>qm에서 가장 큰 디렉터리는 src가 아니라 test입니다</h1>
+<div class="meta">2026년 09월 04일 · 출처 4곳</div>
+<div class="readout"><p>추적 파일 <b class="fig">1462</b>개 중 test/ 아래가 <b class="fig">470</b>개로 src/ 아래 <b class="fig">404</b>개보다 많고, 확장자는 .ts가 <b class="fig">1201</b>개로 사실상 전부입니다.</p><div class="bars"><div class="strip"><i style="width:32.15%;--o:1.00"></i><i style="width:27.63%;--o:0.78"></i><i style="width:17.03%;--o:0.56"></i><i style="width:7.73%;--o:0.34"></i></div><dl><div class="" style="--o:1.00"><dt>test</dt><dd>470</dd></div><div class="" style="--o:0.78"><dt>src</dt><dd>404</dd></div><div class="" style="--o:0.56"><dt>plugins</dt><dd>249</dd></div><div class="" style="--o:0.34"><dt>cli</dt><dd>113</dd></div><div class="other" style="--o:0.32"><dt>기타</dt><dd>226</dd></div></dl></div></div>
+<h2 class="section" id="s1">한 줄 설명이 감춘 것</h2>
+<p class="item">설명은 &quot;Multiplayer agent harness for work&quot;입니다. 하네스라는 단어를 보고 에이전트 루프를 감싸는 얇은 래퍼를 떠올리면 어긋납니다. README가 그리는 것은 Postgres에 세션과 메모리와 큐를 두고, 헤드리스 코어가 API·identity·policy·scheduler를 맡고, 그 옆에 스코프별 샌드박스가 붙는 구조입니다.</p>
+<p class="item">핵심 설계는 멀티테넌시입니다. 직원마다 격리된 워크스페이스를 갖고 서로 영향 없이 일하되, 채널과 그룹 메시지와 프로젝트에서는 같은 에이전트와 함께 일합니다. 사람 단위와 방 단위 각각이 자기 메모리, 파일, keychain 뷰, 권한, cron, 웹 앱, 지속 샌드박스를 갖습니다. 개인 비서형 에이전트를 회사 전체로 늘렸을 때 생기는 복잡도를 정면으로 다루겠다는 선언입니다.</p>
+<p class="item">에이전트 루프 자체는 교체 대상으로 잡혀 있습니다. Pi, OpenCode, Codex, Claude Code가 같은 코어를 구동하고, 배포가 특정 벤더에 묶이지 않도록 했다고 적혀 있습니다. 즉 이 저장소가 소유한 것은 모델을 부르는 방법이 아니라 그 주변의 정체성, 정책, 스케줄, 격리입니다.</p>
+<h2 class="section" id="s2">test가 src를 앞선다</h2>
+<p class="item">추적 파일은 1462개입니다. 이 중 test/ 아래가 470개, src/ 아래가 404개, plugins/ 아래가 249개, cli/ 아래가 113개입니다. 테스트 디렉터리가 소스 디렉터리보다 큽니다.</p>
+<p class="item">이 역전은 이 저장소가 다루는 대상을 생각하면 자연스럽습니다. 권한, 스코프 격리, keychain 뷰, 관리자 게이트가 걸린 스킬 승격 같은 것은 눈으로 확인하기 어렵고 회귀가 조용히 일어납니다. 사람 A의 파일이 사람 B에게 보이지 않는다는 성질은 실행해 봐서 아는 게 아니라 테스트로 고정해 두는 성질입니다. 부피가 test/에 몰려 있다는 사실은 이 코드베이스의 위험이 알고리즘이 아니라 경계에 있다는 뜻으로 읽힙니다.</p>
+<p class="item">plugins/ 249개도 눈에 띕니다. src/ 404개와 같은 자릿수이고, 플러그인이 부속이 아니라 하나의 축이라는 걸 보여줍니다. 확장자 분포는 .ts 1201, .md 125, .json 40, .yaml 18입니다. TypeScript 단일 언어이고, 설정 파일은 적습니다. 대신 .md가 125개로 두 번째입니다. 이 저장소에서 마크다운은 문서가 아니라 실행 대상에 가깝습니다.</p>
+<div class="code"><div class="bar"><a class="path" href="https://github.com/yc-software/qm/blob/HEAD/.claude/skills/dev-instance/SKILL.md">.claude/skills/dev-instance/SKILL.md (SKILL.md 이름의 파일 29개 중 하나)</a><button class="copy" type="button">복사</button></div><pre><code>---
+name: dev-instance
+description: Run the current worktree as a production-shaped local dev instance — core, Slack, web UI, admin, portal, on a real Pi LLM + Postgres — reachable in Slack as your own bot. Each developer uses their own set of Slack apps from their own machine's pool store, so many worktrees (yours and a teammate's) can run reachable at once without colliding. Use when asked to /dev-instance, "spin this up so I can QA it in Slack", or "let me test your branch end to end".
+---
+
+# dev-instance
+
+`dev-instance` runs the current worktree as a full, production-shaped stack on your
+machine and makes it reachable in Slack as one of _your_ bots. It is the way to QA a
+branch end to end: real LLM turns, a real sandbox, a real local Postgres (empty by
+default; opt in to prod data), and the real Slack/web/admin surfaces.
+
+Use the repo-root launcher (a thin wrapper over the TypeScript CLI in `scripts/dev/`;
+every command accepts `--json` for machine-readable output):
+
+```bash
+bash scripts/dev-instance.sh up
+bash scripts/dev-instance.sh status
+bash scripts/dev-instance.sh down
+bash scripts/dev-instance.sh doctor
+bash scripts/dev-instance.sh canary
+bash scripts/dev-instance.sh restart [child]
+bash scripts/dev-instance.sh logs [child] [-f]
+```
+
+`npm run dev-instance`, `npm run dev-instance:status`, `npm run dev-instance:down`, and
+`npm run dev-instance:doctor` are equivalent. T
+</code></pre></div>
+<h2 class="section" id="s3">스킬과 런처의 단위</h2>
+<p class="item">인용된 .claude/skills/dev-instance/SKILL.md가 그 .md 125개의 성격을 보여줍니다. 디렉터리 하나에 SKILL.md 하나, 맨 위에 name과 description을 담은 프런트매터가 붙습니다. description에는 언제 이 스킬을 쓰는지가 문장으로 적혀 있습니다. &quot;/dev-instance&quot;, &quot;spin this up so I can QA it in Slack&quot;, &quot;let me test your branch end to end&quot; 같은 트리거가 그대로 들어 있습니다. 스킬은 코드가 아니라 호출 조건과 절차를 적은 문서 단위입니다.</p>
+<p class="item">같은 파일에 하네스별 사본 규칙이 명시돼 있습니다. Codex가 보는 복사본은 .codex/skills/dev-instance/SKILL.md에 있고 두 설명을 동등하게 유지하라고 적혀 있습니다. 앞서 말한 하네스 중립성이 문서 레이아웃까지 내려온 지점입니다.</p>
+<p class="item">실행 진입점은 얇게 감싸여 있습니다. 저장소 루트의 scripts/dev-instance.sh는 scripts/dev/ 아래 TypeScript CLI를 감싼 래퍼이고, up, status, down, doctor, canary, restart, logs 하위 명령을 갖습니다. 모든 명령이 --json을 받습니다. npm run dev-instance 계열도 같은 것을 가리킵니다. 사람이 치는 명령과 에이전트가 파싱하는 출력이 같은 입구를 쓰도록 만든 구성입니다.</p>
+<p class="item">up이 실제로 띄우는 것은 프로세스 하나가 아닙니다. 이 머신의 pool store에서 빈 Slack 앱 슬롯을 하나 잡고, 슬롯별 supervisor 데몬을 띄우고, 그 데몬이 core API와 워커, Slack Socket Mode 플러그인을 소유합니다. 개발자마다 자기 Slack 앱 집합을 쓰기 때문에 여러 worktree가 동시에 살아 있어도 충돌하지 않습니다. 조직 단위 격리를 제품에서 하는 방식이 개발 환경에서도 반복됩니다.</p>
+<h2 class="section" id="s4">배포가 곧 설치다</h2>
+<p class="item">README의 Setup 항목에는 패키지 설치 명령이 없습니다. 대신 쓰던 코딩 에이전트에게 &quot;Let&#x27;s deploy https://github.com/yc-software/qm&quot;이라고 말하고, 저장소 안의 배포 가이드를 따르게 하라고 적혀 있습니다. 클론해서 로컬에서 돌려 보는 소프트웨어가 아니라, 처음부터 어딘가에 세워 두는 소프트웨어입니다.</p>
+<p class="item">스택이 서 있어도 남는 일이 있습니다. 어떤 하네스와 모델을 열어 둘지, 조직 단위 설정과 보안 자세를 어떻게 잡을지는 관리자가 정하는 항목으로 분리돼 있습니다. Slack과 웹에서 같은 정체성과 설정이 이어지려면 Slack 쪽 앱 등록이 선행돼야 하고, dev-instance 문서는 그 앱들이 개발자 머신의 pool store에서 슬롯 단위로 관리된다고 적고 있습니다. 스킬도 기본값으로 주어지는 게 아니라 스코프가 소유하고 grant로 공유되며, 조직 전체로 올리려면 관리자 승인이 필요합니다.</p>
+<p class="item">dev-instance가 상정하는 로컬 조건도 가볍지 않습니다. 실제 Pi LLM, 실제 로컬 Postgres, 실제 샌드박스, 실제 Slack·웹·admin 표면이 함께 떠야 production-shaped라고 부릅니다. Postgres는 기본적으로 비어 있고 운영 데이터는 선택해서 넣습니다.</p>
+<h2 class="section" id="s5">라이선스보다 운영 비용</h2>
+<p class="item">라이선스는 MIT입니다. 도입을 막는 쪽은 아닙니다. 마지막 푸시는 2026-09-04이고 스타는 14544개, 열린 이슈는 385개입니다. 활발하게 움직이는 저장소이고, 열린 이슈 수는 그만큼 표면이 넓다는 뜻으로도 읽힙니다.</p>
+<p class="item">실제 문턱은 운영입니다. Postgres, 사람마다 그리고 방마다 하나씩인 지속 샌드박스, 그 위에서 도는 모델 호출이 모두 상시 비용입니다. 여기에 cron과 watch와 인바운드 webhook이 아무도 보지 않는 동안 일을 돌린다고 적혀 있으니, 유휴 시간에도 지출이 발생하는 구조입니다.</p>
+<p class="item">적용 범위도 좁게 정의돼 있습니다. QM은 스타트업을 위해 설계됐다고 명시합니다. 사람마다 격리된 워크스페이스와 스코프별 권한, keychain, 관리자 게이트가 값을 하려면 사람이 여럿이어야 하고 Slack이 이미 일하는 장소여야 합니다. 혼자 쓰거나 Slack을 쓰지 않는다면 이 구조가 제공하는 것 대부분이 비용으로만 남습니다.</p>
+<div class="facts"><h2>측정값</h2><table><tr><th>스타</th><td class="num"><span>14544</span></td></tr><tr><th>주 언어</th><td>TypeScript</td></tr><tr><th>라이선스</th><td>MIT</td></tr><tr><th>마지막 푸시</th><td>2026-09-04T06:03:56Z</td></tr><tr><th>열린 이슈</th><td class="num"><span>385</span></td></tr><tr><th>추적 파일 수</th><td class="num"><span>1462</span></td></tr><tr class="bar" style="--fill:100.0%"><th>test/ 아래 파일</th><td class="num"><span>470</span></td></tr><tr class="bar" style="--fill:86.0%"><th>src/ 아래 파일</th><td class="num"><span>404</span></td></tr><tr class="bar" style="--fill:53.0%"><th>plugins/ 아래 파일</th><td class="num"><span>249</span></td></tr><tr class="bar" style="--fill:24.0%"><th>cli/ 아래 파일</th><td class="num"><span>113</span></td></tr><tr><th>가장 많은 파일 종류</th><td>.ts (1201), .md (125), .json (40), .yaml (18)</td></tr></table><p class="endpoint">2026-09-04 측정 · <a href="https://api.github.com/repos/yc-software/qm">https://api.github.com/repos/yc-software/qm</a> · <a href="https://api.github.com/repos/yc-software/qm/git/trees/main">https://api.github.com/repos/yc-software/qm/git/trees/main</a></p></div>
+<div class="sources"><h2>출처</h2><ol><li><a href="https://github.com/yc-software/qm">yc-software/qm</a></li><li><a href="https://github.com/yc-software/qm">저장소 설명</a></li><li><a href="https://github.com/yc-software/qm#readme">README</a></li><li><a href="https://github.com/yc-software/qm/blob/HEAD/.claude/skills/dev-instance/SKILL.md">.claude/skills/dev-instance/SKILL.md (SKILL.md 이름의 파일 29개 중 하나)</a></li></ol></div></div><aside class="toc"><h2>이 글의 순서</h2><ol><li><a href="#s1">한 줄 설명이 감춘 것</a></li><li><a href="#s2">test가 src를 앞선다</a></li><li><a href="#s3">스킬과 런처의 단위</a></li><li><a href="#s4">배포가 곧 설치다</a></li><li><a href="#s5">라이선스보다 운영 비용</a></li></ol></aside></div>
 <footer>
   모든 수치는 명시된 엔드포인트에서 직접 측정했습니다.<br>
   <a href="https://claire-mun.github.io/about.html">소개</a> · <a href="https://claire-mun.github.io/privacy.html">개인정보처리방침</a>
   · <a href="https://claire-mun.github.io/feed.xml">RSS</a>
 </footer>
-</div></body></html>
+</div><script>
+document.querySelectorAll('.code').forEach(function(box){
+  var button=box.querySelector('.copy'),code=box.querySelector('code');
+  if(!button||!code)return;
+  button.addEventListener('click',function(){
+    navigator.clipboard.writeText(code.textContent).then(function(){
+      var was=button.textContent;button.textContent='복사됨';
+      setTimeout(function(){button.textContent=was;},1400);
+    });
+  });
+});
+</script></body></html>
